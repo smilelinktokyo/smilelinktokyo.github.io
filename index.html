@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>婚活サロン 集客ダッシュボード</title>
+<title>婚活サポート スマイルリンク｜集客ダッシュボード</title>
 <style>
 :root{
-  --bg:#faf7f8; --card:#ffffff; --ink:#2b2431; --sub:#8a7f92; --line:#efe7ec;
+  --bg:#faf6f1; --card:#ffffff; --ink:#2b2431; --sub:#8a7f92; --line:#efe7ec;
   --rose:#e5648e; --rose-soft:#fbe7ef; --rose-deep:#c94574;
   --gold:#d9a441; --green:#3fb489; --blue:#4f8fd6; --purple:#9b6dd6;
   --shadow:0 6px 24px -12px rgba(90,40,70,.28);
@@ -106,8 +106,8 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
 <div class="wrap">
   <header>
     <div>
-      <div class="ttl">💍 婚活サロン <span>集客ダッシュボード</span></div>
-      <div class="sub">問い合わせ → 無料相談 → ご入会 まで、集客をまるっと見える化</div>
+      <div class="ttl">💐 婚活サポート スマイルリンク <span>集客ダッシュボード</span></div>
+      <div class="sub">東京･中野／30代・40代女性の婚活サポート（IBJ正規加盟店）　—　問い合わせ → 無料相談 → ご入会 まで、集客をまるっと見える化</div>
     </div>
     <div class="badge-demo">サンプル画面（構想）</div>
   </header>
@@ -224,14 +224,14 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
         <div style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px">
           <div style="font-size:12px;font-weight:800;color:var(--green);margin-bottom:6px">📧 自動（メール連携）</div>
-          <div style="font-size:12px;color:#5a4f63;line-height:1.8">・お問い合わせフォーム<br>・IBJ 問い合わせ通知<br>・無料相談 予約確認<br>・Instagram / Googleフォーム通知<br><span style="color:var(--sub)">→ 流入元も本文から自動判別</span></div>
+          <div style="font-size:12px;color:#5a4f63;line-height:1.8">・<b>LINE公式アカウント</b>の新規お友だち・メッセージ<br>・Canvaリンクの無料相談フォーム<br>・IBJ 問い合わせ通知<br>・Instagram / Facebook のDM通知<br>・無料相談 予約確認メール<br><span style="color:var(--sub)">→ 流入元も本文から自動判別</span></div>
         </div>
         <div style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px">
           <div style="font-size:12px;font-weight:800;color:var(--gold);margin-bottom:6px">✍️ 手入力（メールが来ないもの）</div>
-          <div style="font-size:12px;color:#5a4f63;line-height:1.8">・電話でのお問い合わせ<br>・直接DM・対面<br>・紹介（口頭）<br><span style="color:var(--sub)">→ ワンタップで1件追加</span></div>
+          <div style="font-size:12px;color:#5a4f63;line-height:1.8">・お電話でのお問い合わせ<br>・対面でのご相談・交流会<br>・ご紹介（口頭）<br><span style="color:var(--sub)">→ ワンタップで1件追加</span></div>
         </div>
       </div>
-      <div class="hint" style="margin-top:12px">💡 メール受信箱を見張って、<b>新しい問い合わせを自動でパイプラインに追加</b>します（JS-SHOPの受注メール自動取込と同じ仕組み）。先生は届いたカードを動かすだけ。</div>
+      <div class="hint" style="margin-top:12px">💡 LINE公式アカウントとメール受信箱を見張って、<b>新しい問い合わせを自動でパイプラインに追加</b>します。先生は届いたカードを動かすだけ。<b>LINEは公式アカウントのAPIで、届いた瞬間に取り込めます。</b></div>
     </div>
     <div class="sec">
       <h2>🧭 パイプライン（見込み客の管理）</h2>
@@ -248,7 +248,7 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
       <div class="h-note">どの発信（Instagram・YouTube・ブログ等）が「問い合わせ」だけでなく「入会」まで運んでくれているか。</div>
       <div class="src-row head"><div>流入元</div><div>問い合わせ数</div><div class="num">問合</div><div class="num">入会</div><div class="num">入会率</div></div>
       <div id="srcFull"></div>
-      <div class="hint">💡 サンプル：Instagramは問い合わせが一番多いが、<b>YouTubeは入会率が2倍</b>。動画に力を入れると効率が良い、という判断ができます。</div>
+      <div class="hint">💡 サンプル：Instagramは問い合わせが一番多いが、<b>YouTubeとご紹介は入会率が3倍以上</b>。件数ではなく「入会まで運べているか」で見ると、力を入れる先が変わります。<b>Facebookは見られているのに入会0</b>＝リールに「無料相談」への導線が無いのが原因かもしれません。</div>
     </div>
   </div>
 
@@ -256,7 +256,7 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
   <div class="pane" id="pane-seg">
     <div class="kpis">
       <div class="kpi hl"><div class="k-lab">全体の入会率</div><div class="k-num">20.8%</div><div class="k-sub">問い合わせ → 入会</div></div>
-      <div class="kpi"><div class="k-lab">いちばん入会しやすい層</div><div class="k-num" style="font-size:19px">YouTube×30代後半</div><div class="k-sub">入会率 <b>50%</b></div></div>
+      <div class="kpi"><div class="k-lab">いちばん入会しやすい層</div><div class="k-num" style="font-size:19px">ご紹介×40代前半</div><div class="k-sub">入会率 <b>67%</b></div></div>
       <div class="kpi"><div class="k-lab">30分以内に返信</div><div class="k-num">38%</div><div class="k-sub">入会率（全体の約2倍）</div></div>
       <div class="kpi"><div class="k-lab">24時間以上たった返信</div><div class="k-num" style="color:var(--rose-deep)">6%</div><div class="k-sub">ほぼ入会に至らない</div></div>
       <div class="kpi"><div class="k-lab">今週の要優先フォロー</div><div class="k-num">3</div><div class="k-sub">スコアが高い問い合わせ</div></div>
@@ -274,13 +274,14 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
       <div class="h-note">上の数字を組み合わせて、AIが「理想のお客様像」を1枚にまとめます。発信も広告も、この人に向けて作ると当たりやすくなります。</div>
       <div class="ai-card">
         <div class="a-type">ペルソナ</div>
-        <div class="a-ttl">「30代後半・都内在住・YouTubeで知って、具体的な質問をくれる女性」</div>
-        <div class="a-body">・<b>年代</b>：35〜39歳（入会率40%／20代前半は0%）
-・<b>エリア</b>：都内・電車で30分圏（来店のハードルが低い）
-・<b>知ったきっかけ</b>：YouTube・ご紹介（＝人柄を見てから来ている）
+        <div class="a-ttl">「40代前半・中野近郊にお住まい・ご紹介やYouTubeで先生を知って、具体的な質問をくれる女性」</div>
+        <div class="a-body">・<b>年代</b>：35〜44歳（30代後半29%・40代前半25%／40代後半〜は0%）
+・<b>エリア</b>：中野・新宿・杉並（対面で通える。近隣は入会率33%、オンラインのみは0%）
+・<b>知ったきっかけ</b>：YouTube・ご紹介（＝<b>人柄を見てから</b>来ている。写真や動画で先生を知っている方は強い）
 ・<b>問い合わせ文</b>：費用・期間・流れなど<b>具体的な質問がある</b>（入会率46%／「とりあえず資料が欲しい」は9%）
-・<b>動き</b>：問い合わせから<b>3日以内</b>に無料相談まで進んでいる</div>
-        <div class="a-why">根拠：直近の入会者5名のうち4名がこの条件に2つ以上あてはまっています。逆に「深夜の一言問い合わせ・返信が翌々日」は入会0でした。</div>
+・<b>動き</b>：問い合わせから<b>3日以内</b>に無料相談まで進んでいる
+・<b>共感ポイント</b>：「40代で婚活・成婚した仲人」という先生ご自身の経験に反応している</div>
+        <div class="a-why">根拠：直近の入会者5名のうち4名がこの条件に2つ以上あてはまっています。逆に「深夜の一言問い合わせ・返信が翌々日」は入会0でした。<b>オンラインのみの方は入会0</b>ですが、これは「オンラインがダメ」ではなく<b>オンライン向けの案内が用意できていない</b>可能性があります。</div>
       </div>
     </div>
 
@@ -343,17 +344,18 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
     </div>
   </div>
 
-  <footer>💍 婚活サロン 集客ダッシュボード — 構想サンプル（数字はすべてダミーです）</footer>
+  <footer>💐 婚活サポート スマイルリンク — 集客ダッシュボード 構想サンプル（数字はすべてダミーです）</footer>
 </div>
 
 <script>
 /* ===== サンプルデータ（すべてダミー） ===== */
 var SRC=[
-  {name:'Instagram', dot:'#e5648e', inq:9, join:2, color:'#e5648e'},
+  {name:'Instagram', dot:'#e5648e', inq:7, join:1, color:'#e5648e'},
   {name:'YouTube',   dot:'#e35d4e', inq:4, join:2, color:'#e35d4e'},
   {name:'Google検索', dot:'#4f8fd6', inq:5, join:0, color:'#4f8fd6'},
-  {name:'IBJブログ',  dot:'#3fb489', inq:3, join:1, color:'#3fb489'},
-  {name:'ご紹介',     dot:'#d9a441', inq:3, join:2, color:'#d9a441'}
+  {name:'IBJブログ',  dot:'#3fb489', inq:3, join:0, color:'#3fb489'},
+  {name:'ご紹介',     dot:'#d9a441', inq:3, join:2, color:'#d9a441'},
+  {name:'Facebook',  dot:'#5b7bb5', inq:2, join:0, color:'#5b7bb5'}
 ];
 var maxInq=Math.max.apply(null,SRC.map(function(s){return s.inq;}));
 function convColor(r){ return r>=40?'#3fb489':r>=20?'#d9a441':'#c94574'; }
@@ -431,6 +433,8 @@ function convColor(r){ return r>=40?'#3fb489':r>=20?'#d9a441':'#c94574'; }
 
 /* AIコンテンツ提案 */
 var AI_POOL=[
+  {type:'Facebook / Instagram リール', ttl:'「結婚後の毎日まで考えていますか」シリーズ化', body:'今のリール（やわらかい花の写真＋問いかけコピー＋落ち着いた声）は\nスマイルリンクさんらしさがはっきり出ています。このトーンのまま3本セットに。\n①「結婚後の毎日まで考えていますか」②「“条件”で選んで疲れていませんか」③「40代からの婚活、遅くありません」\n・最後の1秒に「プロフィールから無料相談・LINE」を必ず入れる', why:'Facebook経由は問い合わせ2件で<b>入会0</b>。見られてはいるのに<b>行き先（CTA）が無い</b>のが原因です。'},
+  {type:'ブログ / 投稿', ttl:'「40代で婚活・成婚した仲人だから話せること」', body:'先生ご自身の経験がいちばん強い素材です。\n・当時いちばん不安だったこと\n・やって良かった／やらなくて良かったこと\n・少人数制だからできる関わり方\n最後に「同じところで止まっている方へ、まず1回話しませんか」', why:'入会された方は<b>ご紹介・YouTube</b>など「<b>人柄を見てから</b>」来た方。先生自身を出す発信が入会に直結します。'},
   {type:'Instagram 投稿', ttl:'「日韓カップルのリアルな1日」', body:'韓国人男性と日本人女性の休日の過ごし方を、写真4枚＋短文で。\n#日韓カップル #国際結婚 #婚活 をつけて。', why:'Instagram経由の相談者は<b>「生活イメージ」</b>系の投稿から来ています。'},
   {type:'YouTube 企画', ttl:'「韓国人男性は本当にレディーファースト?」検証', body:'会員さん(顔出しOKの方)へのインタビュー形式。3〜5分。\n冒頭30秒で結論→エピソード→まとめ。', why:'YouTube流入は<b>入会率が高い(50%)</b>。動画で人柄が伝わると成約に近い。'},
   {type:'ブログ 下書き', ttl:'「問い合わせから入会までの流れ」完全ガイド', body:'無料相談で何を話すか、費用、期間の目安を正直に。\n不安を先に解消する記事は相談予約につながりやすい。', why:'Google検索の人は<b>比較検討中</b>。「流れ・費用」記事が予約の背中を押す。'},
@@ -487,13 +491,14 @@ genAd();
 /* ===== 入会しやすい人（セグメント分析） ===== */
 var SEG_GROUPS=[
   {g:'年代', rows:[
-    {n:'20代前半', inq:5, join:0}, {n:'20代後半', inq:6, join:1},
-    {n:'30代前半', inq:5, join:1}, {n:'30代後半', inq:5, join:2}, {n:'40代〜', inq:3, join:1}]},
+    {n:'30代前半', inq:5, join:1}, {n:'30代後半', inq:7, join:2},
+    {n:'40代前半', inq:8, join:2}, {n:'40代後半〜', inq:4, join:0}]},
   {g:'お住まい', rows:[
-    {n:'都内（30分圏）', inq:13, join:4}, {n:'都外・遠方', inq:11, join:1}]},
+    {n:'中野・新宿・杉並（近隣）', inq:9, join:3}, {n:'都内その他', inq:8, join:2},
+    {n:'オンライン相談（全国）', inq:7, join:0}]},
   {g:'知ったきっかけ', rows:[
-    {n:'YouTube', inq:4, join:2}, {n:'ご紹介', inq:3, join:2}, {n:'Instagram', inq:9, join:2},
-    {n:'IBJブログ', inq:3, join:1}, {n:'Google検索', inq:5, join:0}]},
+    {n:'YouTube', inq:4, join:2}, {n:'ご紹介', inq:3, join:2}, {n:'Instagram', inq:7, join:1},
+    {n:'IBJブログ', inq:3, join:0}, {n:'Google検索', inq:5, join:0}, {n:'Facebook', inq:2, join:0}]},
   {g:'問い合わせの内容', rows:[
     {n:'具体的な質問あり（費用・期間・流れ）', inq:11, join:5},
     {n:'「まずは資料を」だけ', inq:8, join:0},
@@ -522,12 +527,12 @@ function segColor(r){ return r>=35?'#3fb489':(r>=18?'#d9a441':'#c94574'); }
 
 /* 入会しやすさスコア */
 var SCORES=[
-  {ini:'K.M さん', src:'YouTube', age:'30代後半', area:'新宿区', memo:'費用と期間、日韓の流れを具体的に質問。平日夜に問い合わせ。', sc:88,
-   plus:['YouTube経由（入会率50%）','30代後半（40%）','都内（31%）','具体的な質問あり（46%）'], minus:[], act:'今日中に返信 → 今週末の無料相談枠を2つ提示'},
+  {ini:'K.M さん', src:'YouTube', age:'30代後半', area:'中野区', memo:'費用と期間、日韓の流れを具体的に質問。平日夜に問い合わせ。', sc:88,
+   plus:['YouTube経由（入会率50%）','30代後半（29%）','近隣エリア（33%）','具体的な質問あり（45%）'], minus:[], act:'今日中に返信 → 今週末の無料相談枠を2つ提示'},
   {ini:'T.A さん', src:'Instagram', age:'20代後半', area:'埼玉県', memo:'「まずは資料をお願いします」のみ。', sc:34,
-   plus:['Instagram経由（22%）'], minus:['「資料だけ」の問い合わせ（9%）','都外・遠方（9%）'], act:'資料＋「オンライン相談もできます」を添えて距離のハードルを外す'},
-  {ini:'S.Y さん', src:'ご紹介', age:'30代前半', area:'渋谷区', memo:'ご入会者からのご紹介。すでに雰囲気を聞いている。', sc:92,
-   plus:['ご紹介（入会率67%）','都内（31%）','30代前半（20%）'], minus:[], act:'紹介者の名前を出して安心感を。相談日を先に押さえる'}
+   plus:['Instagram経由（14%）'], minus:['「資料だけ」の問い合わせ（0%）','オンラインのみ（0%）'], act:'資料＋「全国オンライン相談OK」を添えて距離のハードルを外す（LINEなら気軽に続きます）'},
+  {ini:'S.Y さん', src:'ご紹介', age:'40代前半', area:'杉並区', memo:'ご入会者からのご紹介。すでに雰囲気を聞いている。', sc:92,
+   plus:['ご紹介（入会率67%）','近隣エリア（33%）','40代前半（25%）'], minus:[], act:'紹介者の名前を出して安心感を。相談日を先に押さえる'}
 ];
 (function(){
   var w=document.getElementById('scoreWrap'); if(!w) return;
