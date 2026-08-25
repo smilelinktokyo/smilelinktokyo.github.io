@@ -93,6 +93,19 @@ header .sub{font-size:12px;color:var(--sub);}
 .ai-card .a-why{font-size:11px;color:var(--sub);margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);}
 .ai-card .a-why b{color:var(--rose);}
 
+/* 사용법 가이드 */
+.guide{background:linear-gradient(160deg,#fffdf8,#fdf3e8);border:1px solid #f3e4d3;border-left:4px solid var(--gold);border-radius:12px;padding:13px 16px 14px;margin-bottom:18px;font-size:12.5px;color:#5a4f63;line-height:1.95;}
+.guide .g-ttl{font-weight:800;font-size:13.5px;color:var(--ink);margin-bottom:5px;}
+.guide b{color:var(--rose-deep);}
+.guide .g-step{display:inline-block;background:var(--gold);color:#fff;font-size:11px;font-weight:800;border-radius:10px;padding:1px 8px;margin-right:6px;}
+.guide a{color:var(--rose-deep);font-weight:700;}
+.wtbl{width:100%;border-collapse:collapse;font-size:13px;}
+.wtbl th{text-align:left;color:var(--sub);font-size:11px;font-weight:700;padding:8px 10px;border-bottom:2px solid var(--line);}
+.wtbl td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top;}
+.wtbl td:first-child{font-weight:800;white-space:nowrap;color:var(--rose-deep);}
+.qa{border:1px solid var(--line);border-radius:12px;padding:13px 16px;margin-bottom:10px;background:#fff;}
+.qa .q{font-weight:800;font-size:13px;margin-bottom:5px;}
+.qa .a{font-size:12.5px;color:#5a4f63;line-height:1.95;}
 .pane{display:none;} .pane.on{display:block;}
 .hint{font-size:12px;color:var(--sub);background:#f7f2f5;border-radius:10px;padding:10px 14px;margin-top:6px;}
 footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
@@ -120,10 +133,12 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
     <div class="tab" data-pane="ad">📣 広告・マーケティング</div>
     <div class="tab" data-pane="ai">✨ AIコンテンツ提案</div>
     <div class="tab tab-ref" data-pane="omiai">💞 お見合い分析（IBJ・参考）</div>
+    <div class="tab" data-pane="help" style="background:#fff8ec;border-color:#f0dcc0;color:#a97e33">📘 使い方・用語</div>
   </div>
 
   <!-- ダッシュボード -->
   <div class="pane on" id="pane-dash">
+<div class="guide"><div class="g-ttl">📘 このタブの使い方 — まずはここだけ見ればOKです</div><span class="g-step">1</span>いちばん上の5つの数字＝<b>今月の実績</b>です。「問い合わせが何件来て、何人がご入会したか」。<br><span class="g-step">2</span>その下の<b>ファネル（じょうご）</b>＝人がどこで減っているか。バーが急に短くなる所が、いま直すべき場所です。<br><span class="g-step">3</span>いちばん下＝<b>どこから来た人</b>が入会まで進んだか。<br>👉 毎朝ここを1分見るだけで、「今日どこに力を入れるか」が決まります。<div style="margin-top:7px;font-size:11.5px;color:var(--sub)">分からない言葉が出てきたら → 右端の <b>📘 使い方・用語</b> タブにぜんぶ書いてあります。</div></div>
     <div class="kpis">
       <div class="kpi hl"><div class="k-lab">今月の問い合わせ</div><div class="k-num">24</div><div class="k-sub"><b>+6</b> 先月比</div></div>
       <div class="kpi"><div class="k-lab">無料相談</div><div class="k-num">12</div><div class="k-sub">予約率 <b>62%</b></div></div>
@@ -218,6 +233,7 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
 
   <!-- パイプライン -->
   <div class="pane" id="pane-pipe">
+<div class="guide"><div class="g-ttl">📘 このタブの使い方 — 問い合わせを「カード」で管理します</div><span class="g-step">1</span>問い合わせが来ると、<b>1人＝1枚のカード</b>になります。メール・LINEで届いたものは<b>自動で</b>入ります（手入力なし）。<br><span class="g-step">2</span>話が進んだらカードを右へ動かします：<b>問い合わせ → 予約 → 相談 → 入会</b>。<br><span class="g-step">3</span>左に溜まっているカード＝<b>返事を待たせている方</b>です。ここが空になっているのが理想。<br>👉 「誰にまだ返してないか」を頭で覚えなくてよくなります。<div style="margin-top:7px;font-size:11.5px;color:var(--sub)">分からない言葉が出てきたら → 右端の <b>📘 使い方・用語</b> タブにぜんぶ書いてあります。</div></div>
     <div class="sec" style="background:linear-gradient(160deg,#fff,#eef6f1);border-color:#dcefe4">
       <h2>📧 メール自動取込</h2>
       <div class="h-note">メールで届く問い合わせは<b>自動でカード化</b>。手入力は電話・直接DMなど「メールが来ないもの」だけ。</div>
@@ -243,6 +259,7 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
 
   <!-- 流入元分析 -->
   <div class="pane" id="pane-src">
+<div class="guide"><div class="g-ttl">📘 このタブの使い方 — 「件数」ではなく「入会率」で見ます</div><span class="g-step">1</span>各行が発信チャネル（Instagram・YouTube など）。<br><span class="g-step">2</span>いちばん右の<b>入会率</b>が主役です。問い合わせが多くても入会0なら、そこに力を入れても実りません。<br><span class="g-step">3</span>色の意味：<b>緑＝良い / 黄＝ふつう / 赤＝要見直し</b>。<br>👉 「たくさん来ている所」ではなく「<b>入会まで運んでくれている所</b>」に時間を寄せるための表です。<div style="margin-top:7px;font-size:11.5px;color:var(--sub)">分からない言葉が出てきたら → 右端の <b>📘 使い方・用語</b> タブにぜんぶ書いてあります。</div></div>
     <div class="sec">
       <h2>📥 流入元分析</h2>
       <div class="h-note">どの発信（Instagram・YouTube・ブログ等）が「問い合わせ」だけでなく「入会」まで運んでくれているか。</div>
@@ -254,6 +271,7 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
 
   <!-- 入会しやすい人 -->
   <div class="pane" id="pane-seg">
+<div class="guide"><div class="g-ttl">📘 このタブの使い方 — 「どんな人が入会しやすいか」を自動で見つけます</div><span class="g-step">1</span>過去に<b>入会された方</b>と<b>されなかった方</b>を機械が見比べて、共通点を出します。先生が集計する必要はありません。<br><span class="g-step">2</span>その共通点をまとめたのが<b>人物像（ペルソナ）</b>。発信も広告も、この人に向けて作ると当たります。<br><span class="g-step">3</span><b>スコア</b>＝新しい問い合わせが来た瞬間につく0〜100点。<b>点数が高い方から先に対応</b>すれば、同じ時間で入会が増えます。<br>⚠️ 点数が低い方を切るためのものでは<b>ありません</b>。<b>順番を決める</b>ための道具です。<div style="margin-top:7px;font-size:11.5px;color:var(--sub)">分からない言葉が出てきたら → 右端の <b>📘 使い方・用語</b> タブにぜんぶ書いてあります。</div></div>
     <div class="kpis">
       <div class="kpi hl"><div class="k-lab">全体の入会率</div><div class="k-num">20.8%</div><div class="k-sub">問い合わせ → 入会</div></div>
       <div class="kpi"><div class="k-lab">いちばん入会しやすい層</div><div class="k-num" style="font-size:19px">ご紹介×40代前半</div><div class="k-sub">入会率 <b>67%</b></div></div>
@@ -303,6 +321,7 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
 
   <!-- 広告・マーケティング -->
   <div class="pane" id="pane-ad">
+<div class="guide"><div class="g-ttl">📘 このタブの使い方 — 広告は「1人入会にいくらか」で判断します</div><span class="g-step">1</span>表のいちばん右<b>獲得単価（CPA）</b>＝ご入会1名にかかった広告費。<b>安いほど良い</b>。<br><span class="g-step">2</span>費用¥0の行（ご紹介・ブログ・YouTube）＝<b>お金がかからない資産</b>。ここが育つと広告費が要らなくなります。<br><span class="g-step">3</span>新しい媒体は<b>いきなり増やさない</b>。月¥1〜2万で2〜3週間ためして、伸びた所にだけ寄せます。<br>⚠️ この画面の金額は<b>すべてサンプル</b>です。実際の単価は出してみないと分かりません。<div style="margin-top:7px;font-size:11.5px;color:var(--sub)">分からない言葉が出てきたら → 右端の <b>📘 使い方・用語</b> タブにぜんぶ書いてあります。</div></div>
     <div class="sec">
       <h2>📣 広告・マーケティング管理</h2>
       <div class="h-note">「どこにいくら使って、何人入会したか」＝ 獲得単価(CPA)。広告を出す前も出した後も、効くところにお金を寄せられます。</div>
@@ -334,6 +353,7 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
 
   <!-- AIコンテンツ提案 -->
   <div class="pane" id="pane-ai">
+<div class="guide"><div class="g-ttl">📘 このタブの使い方 — 「何を発信しよう…」で止まらないために</div><span class="g-step">1</span>ボタンを押すと、AIが<b>投稿案</b>を作ります（Instagram・YouTube・ブログ・リール）。<br><span class="g-step">2</span>ただの思いつきではなく、<b>実際に入会につながった投稿の傾向</b>から作ります。案の下に「なぜ効くか」の根拠が付いています。<br><span class="g-step">3</span>そのまま使わなくてOK。<b>気に入った案を少し直して投稿</b>するだけで十分です。<br>👉 ネタ切れの日でも、ゼロから考えなくてよくなります。<div style="margin-top:7px;font-size:11.5px;color:var(--sub)">分からない言葉が出てきたら → 右端の <b>📘 使い方・用語</b> タブにぜんぶ書いてあります。</div></div>
     <div class="sec">
       <div class="ai-head">
         <div><h2 style="margin:0">✨ AIコンテンツ提案</h2><div class="h-note" style="margin:2px 0 0">入会につながった投稿の傾向から、次に出すと良い発信を自動で作ります。選んで、少し直して投稿するだけ。</div></div>
@@ -341,6 +361,53 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
       </div>
       <div id="aiList"></div>
       <div class="hint">💡 実際にはワンクリックで、Instagramのキャプション・YouTubeの企画・ブログの下書きまで自動生成します（日韓国際結婚に特化）。</div>
+    </div>
+  </div>
+
+  <!-- 使い方・用語 -->
+  <div class="pane" id="pane-help">
+    <div class="sec" style="background:linear-gradient(160deg,#fff,#fdf3e8);border-color:#f3e4d3">
+      <h2>📘 この画面は何ですか？</h2>
+      <div class="h-note" style="margin-bottom:12px">「<b>集客をこういう形で仕組み化できます</b>」というご提案（構想）の画面です。<b>数字はすべてダミー（サンプル）</b>で、実際のデータではありません。</div>
+      <div class="guide" style="margin-bottom:0">
+        <div class="g-ttl">🌱 いまは「絵」ですが、ぜんぶ実際に作れます</div>
+        下の「実現できること一覧」に、<b>何がすぐできて、何に準備が要るか</b>を正直に書いています。<br>
+        ご覧いただいて「これは要る／これは要らない」を教えていただければ、<b>要るものだけ</b>から作っていけます。全部いっぺんに作る必要はありません。
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>🔄 全体の流れ — やることは3つだけです</h2>
+      <div class="h-note">この画面がやっていることを、ひと言でいうと「<b>集める → 追いかける → 良くする</b>」の3つです。</div>
+      <div class="funnel">
+        <div class="fn-row"><div class="fn-lab">① 集める</div><div class="fn-bar-wrap"><div class="fn-bar" style="width:100%;background:var(--rose)">問い合わせが来たら、自動でカードになる</div></div></div>
+        <div class="fn-row"><div class="fn-lab">② 追いかける</div><div class="fn-bar-wrap"><div class="fn-bar" style="width:100%;background:var(--gold)">相談・入会まで、誰がどこで止まっているか見える</div></div></div>
+        <div class="fn-row"><div class="fn-lab">③ 良くする</div><div class="fn-bar-wrap"><div class="fn-bar" style="width:100%;background:var(--green)">入会につながった発信を見つけて、次の発信をAIが作る</div></div></div>
+      </div>
+      <div class="hint">💡 先生にお願いしたいのは<b>②のカードを動かすこと</b>だけです。①と③は自動で回ります。</div>
+    </div>
+
+    <div class="sec">
+      <h2>🛠 実現できること一覧（正直版）</h2>
+      <div class="h-note">「できます」だけ並べても意味がないので、<b>準備が要るもの・確認が必要なもの</b>も書いています。</div>
+      <div style="overflow-x:auto">
+      <table class="wtbl">
+        <thead><tr><th>やりたいこと</th><th>実現</th><th>必要なもの・注意</th></tr></thead>
+        <tbody id="feasBody"></tbody>
+      </table>
+      </div>
+      <div class="hint">🟢＝すぐ作れます　🟡＝ご準備をいただければ作れます　🟠＝先に確認が必要です</div>
+    </div>
+
+    <div class="sec">
+      <h2>📖 用語ミニ辞典</h2>
+      <div class="h-note">この画面に出てくるカタカナ語だけ、かんたんに。</div>
+      <div style="overflow-x:auto"><table class="wtbl"><tbody id="wordBody"></tbody></table></div>
+    </div>
+
+    <div class="sec">
+      <h2>❓ よくあるご質問</h2>
+      <div id="qaBody"></div>
     </div>
   </div>
 
@@ -671,6 +738,65 @@ function genFollow(){
   folShown+=3;
 }
 genFollow();
+
+/* ===== 使い方・用語 ===== */
+var FEAS=[
+  ['メールで来た問い合わせを自動でカード化','🟢','メールの転送設定だけ。手入力は不要になります'],
+  ['LINEの問い合わせを自動で取り込む','🟢','LINE公式アカウント（無料枠あり）＋API連携。先生の窓口がLINEなので相性が最良です'],
+  ['問い合わせ→相談→入会 のパイプライン管理','🟢','準備は不要です'],
+  ['どこから来たかを自動で判別','🟢','各リンクに小さな印（UTM）を付けます。こちらで作ってお渡しします'],
+  ['入会率・ファネルの自動集計','🟢','準備は不要です'],
+  ['AIが次の発信案を作る','🟢','準備は不要です'],
+  ['AIが広告の文面・ターゲット・予算案を作る','🟢','準備は不要です'],
+  ['「入会しやすい人」のスコア','🟡','仕組みはすぐ作れます。ただし<b>データが30〜50件たまるほど精度が上がります</b>。最初はざっくりで動きます'],
+  ['Instagramの数字取得・自動投稿','🟡','Instagramを<b>プロアカウント</b>にし、Facebook<b>ページ</b>と連携する必要があります'],
+  ['Facebookの数字取得・自動投稿','🟡','<b>ページ（ビジネス用）が必要</b>です。個人プロフィールでは連携できません。ページ作成は無料・5分ほど'],
+  ['広告の自動出稿と成果の自動集計','🟡','各広告アカウント（Meta / LINE / Google）とお支払い方法。<b>お金が動く出稿は必ず承認制</b>にします'],
+  ['TikTokの活用','🟡','まず<b>無料投稿でテスト</b>。年齢層が合うか確かめてから広告に進みます'],
+  ['IBJ「お見合いアナリティクス」の取り込み','🟠','別料金オプションです。<b>CSVでダウンロードできるか</b>を先に確認させてください。画面の数字を月1回入れる形でも動きます'],
+  ['電話でのお問い合わせ','🟠','メールが来ないため自動化できません。ワンタップで1件追加できるようにします']
+];
+(function(){
+  var tb=document.getElementById('feasBody'); if(!tb) return;
+  tb.innerHTML=FEAS.map(function(r){
+    return '<tr><td style="color:var(--ink)">'+r[0]+'</td><td style="font-size:17px;text-align:center">'+r[1]+'</td><td style="color:#5a4f63;font-size:12.5px">'+r[2]+'</td></tr>';
+  }).join('');
+})();
+
+var WORDS=[
+  ['ファネル','じょうご。問い合わせ→相談→入会と<b>だんだん人が減っていく形</b>のこと。どこで減るかを見るための図です'],
+  ['転換率（CV率）','次の段階に進んだ割合。例：問い合わせ24件のうち5件が入会 → 転換率20.8%'],
+  ['リード','まだ入会していない<b>見込みのお客様</b>のこと。この画面では「カード」で表しています'],
+  ['流入元','その方が<b>どこで先生を知ったか</b>。Instagram・YouTube・ご紹介 など'],
+  ['CPA（獲得単価）','ご入会1名を得るのにかかった広告費。<b>安いほど良い</b>。例：¥24,000使って2名入会 → CPA¥12,000'],
+  ['CPC / CPM','CPC＝1クリックいくら。CPM＝1,000回表示されていくら。広告の課金方式です'],
+  ['CTA','「無料相談はこちら」など、<b>次にやってほしい行動への案内</b>。これが無いと見られても動いてもらえません'],
+  ['オーガニック','広告費をかけずに、通常の投稿から来ること。<b>タダで来てくれる</b>のが強みです'],
+  ['セグメント','年代・地域・きっかけなど、<b>お客様をグループに分けたもの</b>'],
+  ['ペルソナ','いちばん来てほしいお客様を<b>1人の人物像</b>にまとめたもの。発信の宛先になります'],
+  ['UTM','リンクに付ける小さな印。これで「どのリンクから来たか」が<b>自動で分かる</b>ようになります'],
+  ['API','システム同士をつなぐ仕組み。LINEやInstagramの数字を<b>自動で取ってくる</b>ために使います']
+];
+(function(){
+  var tb=document.getElementById('wordBody'); if(!tb) return;
+  tb.innerHTML=WORDS.map(function(r){ return '<tr><td>'+r[0]+'</td><td style="color:#5a4f63">'+r[1]+'</td></tr>'; }).join('');
+})();
+
+var QAS=[
+  ['この数字は本物ですか？','いいえ、<b>すべてサンプル（ダミー）</b>です。「こういう形で見えるようになります」という絵をご覧いただくためのものです。実際に作れば、ここに先生の本当の数字が入ります。'],
+  ['パソコンが苦手でも使えますか？','はい。先生にお願いするのは<b>カードを動かすこと</b>と<b>返信すること</b>だけです。集計・分類・グラフはすべて自動です。スマホでも見られます。'],
+  ['入力する手間が増えませんか？','逆に減ります。メール・LINEで届いた問い合わせは<b>自動でカードになります</b>。手入力が必要なのは、お電話など「メールが来ないもの」だけです。'],
+  ['費用はどれくらいかかりますか？','この画面のような仕組み自体は、<b>作ってしまえば維持費はほぼかかりません</b>。お金がかかるのは<b>広告を出すとき</b>だけで、それも月¥1〜2万の少額テストから始められます。'],
+  ['会員さんの個人情報は大丈夫ですか？','この提案画面には<b>実在の方の情報は一切入っていません</b>。実際に作る際も、お名前はイニシャル管理にし、先生だけが見られる状態にします。'],
+  ['全部いっぺんに作るのですか？','いいえ。<b>いちばん効くところ1つ</b>から始めるのがおすすめです。今の状況だと「LINE・メールの問い合わせ自動取込」と「30分以内に返信できる仕組み」が最も早く効きます。'],
+  ['IBJのお見合いアナリティクスは使いますか？','<b>今すぐは使いません。</b>先生のご要望は集客の仕組み化とうかがいましたので、そちらを優先します。会員さんの活動データは、必要になった時に足せます（参考タブに見本を置いています）。']
+];
+(function(){
+  var w=document.getElementById('qaBody'); if(!w) return;
+  w.innerHTML=QAS.map(function(r){
+    return '<div class="qa"><div class="q">Q. '+r[0]+'</div><div class="a">A. '+r[1]+'</div></div>';
+  }).join('');
+})();
 
 /* タブ切替 */
 document.querySelectorAll('.tab').forEach(function(t){
