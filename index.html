@@ -133,6 +133,7 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
     <div class="tab" data-pane="ad">📣 広告・マーケティング</div>
     <div class="tab" data-pane="ai">✨ AIコンテンツ提案</div>
     <div class="tab tab-ref" data-pane="omiai">💞 お見合い分析（IBJ・参考）</div>
+    <div class="tab" data-pane="step" style="background:#eef7f1;border-color:#cfe7d8;color:#2f8a63">🚀 はじめ方</div>
     <div class="tab" data-pane="help" style="background:#fff8ec;border-color:#f0dcc0;color:#a97e33">📘 使い方・用語</div>
   </div>
 
@@ -361,6 +362,43 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
       </div>
       <div id="aiList"></div>
       <div class="hint">💡 実際にはワンクリックで、Instagramのキャプション・YouTubeの企画・ブログの下書きまで自動生成します（日韓国際結婚に特化）。</div>
+    </div>
+  </div>
+
+  <!-- はじめ方 -->
+  <div class="pane" id="pane-step">
+    <div class="guide"><div class="g-ttl">🚀 全部いっぺんには作りません。効くものから順に。</div>
+    ここでは <b>①いま すぐ できること</b>／<b>②少しだけご準備をいただくもの</b>／<b>③あとで必要になったら</b> の3つに分けています。<br>
+    ①だけでも <b>「問い合わせを取りこぼさない」</b>という一番大事なところは動きます。②③は後からいつでも足せます。</div>
+
+    <div class="sec" style="background:linear-gradient(160deg,#fff,#eef7f1);border-color:#cfe7d8">
+      <h2>✅ すぐ始められること（ご準備は ほぼ不要）</h2>
+      <div class="h-note">先生にご用意いただくものが無い、もしくはメール設定だけで動くものです。</div>
+      <div id="stepNow"></div>
+    </div>
+
+    <div class="sec">
+      <h2>🔑 少しだけご準備をいただくこと</h2>
+      <div class="h-note">先生の側で「アカウントの用意」だけお願いします。作業自体はこちらで行います。<b>いずれも無料・数分</b>です。</div>
+      <div id="stepPrep"></div>
+    </div>
+
+    <div class="sec" style="background:#fbf9f6">
+      <h2>🕓 あとで必要になったら（今はやらなくてOK）</h2>
+      <div class="h-note">今は無くても困りません。必要になった時に足せます。</div>
+      <div id="stepLater"></div>
+    </div>
+
+    <div class="sec">
+      <h2>🗺 おすすめの順番</h2>
+      <div class="h-note">「効果が大きくて、手間が小さい」順に並べています。</div>
+      <div class="funnel" id="stepRoad"></div>
+      <div class="hint">💡 いちばん最初が広告ではないのは理由があります。<b>返信が遅いと、広告でどれだけ集めても入会につながらない</b>からです（サンプルでは30分以内38%・翌日以降0%）。まず<b>受け皿</b>を作ってから、広告で人を増やします。</div>
+    </div>
+
+    <div class="sec" style="background:linear-gradient(160deg,#fff,#fdf3e8);border-color:#f3e4d3">
+      <h2>📋 先生にお願いすること（これだけです）</h2>
+      <div id="stepAsk"></div>
     </div>
   </div>
 
@@ -750,6 +788,75 @@ function genFollow(){
   folShown+=3;
 }
 genFollow();
+
+/* ===== はじめ方（導入ステップ） ===== */
+var STEP_NOW=[
+  {t:'メールで来た問い合わせを自動でカード化', e:'◎◎◎', d:'数日', p:'メールの転送設定だけ（こちらで手順をお渡しします）', w:'取りこぼしが無くなります。いちばん効きます'},
+  {t:'パイプライン（問い合わせ→相談→入会の管理）', e:'◎◎◎', d:'数日', p:'なし', w:'「誰にまだ返してないか」を覚えなくてよくなります'},
+  {t:'ファネル・入会率の自動集計', e:'◎◎', d:'数日', p:'なし', w:'どこで人が減っているかが毎日わかります'},
+  {t:'流入元の自動判別（UTM付きリンク）', e:'◎◎', d:'数日', p:'こちらでリンクを作ってお渡しします。プロフィール欄に貼り替えるだけ', w:'「どの発信から来たか」が自動で分かります'},
+  {t:'返信スピードの自動計測', e:'◎◎', d:'数日', p:'なし', w:'入会率に直結する数字です（サンプル：30分以内38% / 翌日以降0%）'},
+  {t:'入会しやすさスコア', e:'◎', d:'数日', p:'なし（データが貯まるほど精度が上がります）', w:'先に対応すべき方が分かります'},
+  {t:'AIの発信案・広告案づくり', e:'◎', d:'数日', p:'なし', w:'ネタ切れの日でもゼロから考えなくてよくなります'}
+];
+var STEP_PREP=[
+  {t:'LINE公式アカウントの連携', e:'◎◎◎', p:'LINE公式アカウント（無料プランで可）＋管理者権限', n:'先生の窓口がLINEなので<b>最優先</b>。届いた瞬間にカード化＋通知＋AI返信下書きまでできます'},
+  {t:'Instagram の数字取得・自動投稿', e:'◎◎', p:'Instagramを<b>プロアカウント</b>に切替（無料・3分）', n:'リールの再生数・プロフィール遷移が自動で入ります'},
+  {t:'Facebook の連携', e:'◎', p:'<b>Facebookページ</b>の開設（無料・5分）', n:'⚠️ 個人プロフィールでは連携できません。今のアカウントがページか個人かの確認だけお願いします'},
+  {t:'広告の自動出稿・成果集計（Meta / Google）', e:'◎◎', p:'広告アカウントとお支払い方法、ビジネス認証', n:'出稿は<b>必ず承認制</b>。先生がボタンを押すまでお金は動きません'}
+];
+var STEP_LATER=[
+  {t:'LINE広告の成果取り込み', n:'連携用APIは<b>新規受付が終了</b>しているため、管理画面のCSVを月1回入れる形になります（1〜2分）'},
+  {t:'TikTok の活用', n:'まず<b>無料投稿でテスト</b>。年齢層が合うか確かめてから広告に進みます（費用0で始められます）'},
+  {t:'IBJ「お見合いアナリティクス」の取り込み', n:'別料金オプション。<b>今回のご要望は集客</b>とうかがっているので、必要になった時で十分です'},
+  {t:'お電話の問い合わせ', n:'メールが来ないため自動化できません。ワンタップで1件追加できるようにします'}
+];
+var ROAD=[
+  {lab:'最初の2週間', c:'var(--rose)',  t:'受け皿づくり：メール＋LINEの自動取込 / パイプライン / 30分以内に返せる通知'},
+  {lab:'1か月目',    c:'var(--gold)',  t:'見える化：流入元の自動判別 / 入会率・ファネル / 返信スピード計測'},
+  {lab:'2か月目〜',  c:'var(--blue)',  t:'増やす：AI発信案で投稿を安定させる → リール広告を少額（月¥1〜2万）でテスト'},
+  {lab:'3か月目〜',  c:'var(--green)', t:'伸ばす：入会しやすい層が見えてくる → その層に広告と発信を寄せる'}
+];
+var ASKS=[
+  ['① お問い合わせが届くメールアドレス', 'そのメールを見張って自動でカード化します。転送設定の手順はこちらでお渡しします'],
+  ['② LINE公式アカウント', 'お持ちでなければ無料で作れます。管理者に招待していただくだけです'],
+  ['③ Instagram が「プロアカウント」かどうか', '違う場合は設定から3分で切り替えられます'],
+  ['④ Facebook が「ページ」か「個人プロフィール」か', 'ページでない場合、ページの開設をお願いします（無料・5分）'],
+  ['⑤ 広告を出す予定があるか', '出す場合のみ、広告アカウントとお支払い方法をご用意ください。出さないなら不要です']
+];
+(function(){
+  var w=document.getElementById('stepNow'); if(!w) return;
+  w.innerHTML=STEP_NOW.map(function(x){
+    return '<div style="border:1px solid var(--line);border-left:4px solid var(--green);border-radius:12px;padding:12px 15px;margin-bottom:9px;background:#fff">'
+      +'<div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center">'
+        +'<div style="font-weight:800;font-size:13.5px">'+x.t+'</div>'
+        +'<div style="font-size:11px;white-space:nowrap"><span class="conv-pill" style="color:#3fb489;background:#e6f6ef">効果 '+x.e+'</span></div></div>'
+      +'<div style="font-size:12.5px;color:#5a4f63;margin-top:6px;line-height:1.9">🎁 <b>ご準備</b>：'+x.p+'<br>💬 '+x.w+'</div></div>';
+  }).join('');
+
+  document.getElementById('stepPrep').innerHTML=STEP_PREP.map(function(x){
+    return '<div style="border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:12px;padding:12px 15px;margin-bottom:9px;background:#fff">'
+      +'<div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center">'
+        +'<div style="font-weight:800;font-size:13.5px">'+x.t+'</div>'
+        +'<div style="font-size:11px;white-space:nowrap"><span class="conv-pill" style="color:#d9a441;background:#fdf3e0">効果 '+x.e+'</span></div></div>'
+      +'<div style="font-size:12.5px;color:#5a4f63;margin-top:6px;line-height:1.9">🔑 <b>ご用意いただくもの</b>：'+x.p+'<br>💬 '+x.n+'</div></div>';
+  }).join('');
+
+  document.getElementById('stepLater').innerHTML=STEP_LATER.map(function(x){
+    return '<div style="border:1px dashed var(--line);border-radius:12px;padding:12px 15px;margin-bottom:9px;background:#fff">'
+      +'<div style="font-weight:800;font-size:13.5px;color:var(--sub)">'+x.t+'</div>'
+      +'<div style="font-size:12.5px;color:#5a4f63;margin-top:5px;line-height:1.9">'+x.n+'</div></div>';
+  }).join('');
+
+  document.getElementById('stepRoad').innerHTML=ROAD.map(function(r,i){
+    return '<div class="fn-row"><div class="fn-lab">'+r.lab+'</div>'
+      +'<div class="fn-bar-wrap"><div class="fn-bar" style="width:'+(100-i*4)+'%;background:'+r.c+';font-size:12.5px;font-weight:700">'+r.t+'</div></div></div>';
+  }).join('');
+
+  document.getElementById('stepAsk').innerHTML=ASKS.map(function(a){
+    return '<div class="qa" style="border-color:#f3e4d3"><div class="q">'+a[0]+'</div><div class="a">'+a[1]+'</div></div>';
+  }).join('');
+})();
 
 /* ===== 使い方・用語 ===== */
 var AUTOS=[
