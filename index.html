@@ -310,15 +310,15 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
         <thead><tr><th>チャネル / 施策</th><th class="r">費用</th><th class="r">問合</th><th class="r">入会</th><th class="r">獲得単価</th><th>評価</th></tr></thead>
         <tbody id="adBody"></tbody>
       </table>
-      <div class="hint">💡 サンプル：Instagram広告はCPAが安く効率◎。IBJブログは費用0で入会も出ていて「持ち出しゼロの資産」。Google広告はCPAが高いので<b>キーワード見直し</b>が必要。</div>
+      <div class="hint">💡 サンプル：<b>リール広告</b>と<b>LINE広告</b>はCPAが安く効率◎（LINEは「友だち追加」で課金＝そのまま相談につながる）。<b>TikTokは問い合わせは来るのに入会0</b>＝年齢層がズレているサイン。まず少額でテストして、伸びた所にだけ寄せます。IBJブログ・ご紹介は費用0の資産。</div>
     </div>
     <div class="sec">
       <h2>🎯 おすすめの配分（AI提案）</h2>
       <div class="h-note">今の数字をもとに「来月どこに寄せると良いか」を提案します。</div>
       <div class="ai-card">
         <div class="a-type">配分提案</div>
-        <div class="a-body">・<b>Instagram広告</b>：CPA¥12,000で最も効率的 → 予算を +30%<br>・<b>YouTube</b>：入会率が高い → 投稿本数を週2本に<br>・<b>Google広告</b>：CPA¥42,000と割高 → キーワードを「日韓 結婚」など具体的に絞る<br>・<b>紹介</b>：入会率68%と最強 → 入会者への紹介特典を設計</div>
-        <div class="a-why">根拠：<b>入会率×獲得単価</b>で並べ替え。件数が多い＝良いではなく、<b>入会まで安く運べるか</b>で判断しています。</div>
+        <div class="a-body">① <b>Instagram/Facebook リール広告</b>：CPA¥12,000で最も効率的。<b>中野から半径◯km</b>に絞れるので、対面相談に来られる方だけに出せます → 予算 +30%<br>② <b>LINE広告</b>：CPA¥10,000。<b>「友だち追加」で課金</b>されるので、広告→LINE→無料相談が途切れません（先生の窓口がLINEなので相性が最良）→ 予算 +20%<br>③ <b>TikTok広告</b>：問い合わせ6件で入会0。<b>年齢層が若すぎる</b>可能性 → 広告は一旦止めて、<b>まず無料投稿でテスト</b><br>④ <b>Google広告</b>：CPA¥42,000と割高 → 「中野 結婚相談所」「40代 婚活」など具体的に絞る<br>⑤ <b>ご紹介</b>：入会率67%と最強 → ご入会者への紹介特典を設計（費用0）</div>
+        <div class="a-why">根拠：<b>入会率×獲得単価</b>で並べ替え。件数が多い＝良いではなく、<b>入会まで安く運べるか</b>で判断しています。新しい媒体は<b>いきなり増やさず、少額でテスト→伸びた所にだけ寄せる</b>のが安全です。</div>
       </div>
     </div>
 
@@ -411,11 +411,13 @@ function convColor(r){ return r>=40?'#3fb489':r>=20?'#d9a441':'#c94574'; }
 /* 広告テーブル */
 (function(){
   var ads=[
-    {ch:'Instagram広告', cost:24000, inq:9, join:2, note:'効率◎', good:true},
-    {ch:'Google広告',    cost:42000, inq:5, join:1, note:'見直し', good:false},
-    {ch:'YouTube(運用)',  cost:0,     inq:4, join:2, note:'資産', good:true},
-    {ch:'IBJブログ',      cost:0,     inq:3, join:1, note:'資産', good:true},
-    {ch:'ご紹介',         cost:0,     inq:3, join:2, note:'最強', good:true}
+    {ch:'Instagram/Facebook リール広告', cost:24000, inq:9, join:2, note:'効率◎', good:true},
+    {ch:'LINE広告（友だち追加）',        cost:20000, inq:8, join:2, note:'相談に直結', good:true},
+    {ch:'Google広告',                   cost:42000, inq:5, join:1, note:'見直し', good:false},
+    {ch:'TikTok広告（テスト）',          cost:10000, inq:6, join:0, note:'年齢層ズレ', good:false},
+    {ch:'YouTube（自主運用）',           cost:0,     inq:4, join:2, note:'資産', good:true},
+    {ch:'IBJブログ',                     cost:0,     inq:3, join:1, note:'資産', good:true},
+    {ch:'ご紹介',                        cost:0,     inq:3, join:2, note:'最強', good:true}
   ];
   var h='';
   ads.forEach(function(a){
@@ -458,6 +460,9 @@ genMore();
 
 /* AI広告クリエイティブ */
 var AD_POOL=[
+  {plat:'Instagram/Facebook リール広告', pc:'#e5648e', head:'「結婚後の毎日まで、考えていますか」', body:'今のリール素材をそのまま広告に。やわらかい写真＋問いかけコピー。\n最後の1秒に「無料相談はプロフィールから」を追加するだけ。\n▶ 中野・新宿・杉並にお住まいの方へ', target:'東京都・中野から半径15km / 33〜45歳 女性 / 婚活・結婚・ライフスタイルに関心', budget:'¥30,000/月', cpa:'¥12,000', why:'すでにある素材が使えるので<b>制作費0</b>。エリアを絞れるので<b>対面相談に来られる方だけ</b>に出せます。'},
+  {plat:'LINE広告（友だち追加）', pc:'#06c755', head:'「40代からの婚活、まだ間に合います」', body:'まずはLINEで。相談の予約も、質問も、ぜんぶLINEで完結。\n40代で婚活・成婚した仲人が、少人数制で伴走します。\n▶ 友だち追加はこちら', target:'東京都 / 35〜49歳 女性 / 未婚 / LINEのオーディエンス配信', budget:'¥20,000/月', cpa:'¥10,000（友だち追加 約¥300〜）', why:'先生の窓口が<b>LINE</b>なので、広告→友だち追加→相談が<b>一度も途切れません</b>。日本の30〜40代女性への到達はLINEが最大級です。'},
+  {plat:'TikTok（まず無料投稿でテスト）', pc:'#111', head:'「婚活で“条件”から入ると、なぜ疲れるのか」', body:'いきなり広告費は使いません。リールの素材をそのまま縦型で投稿し、\n2週間の反応（保存数・プロフィール遷移）だけ見ます。\n伸びたら、その動画だけを広告に回します。', target:'テスト段階のため設定なし（オーガニック投稿）', budget:'¥0（テスト）→ 反応が出たら ¥10,000/月', cpa:'未知数（サンプルでは入会0）', why:'TikTokは<b>年齢層が若い</b>のが定説です。先生の客層（30〜40代）と合うかは<b>やってみないと分からない</b>ので、<b>お金を使う前に無料で確かめます</b>。'},
   {plat:'Instagram広告', pc:'#e5648e', head:'「言葉の壁、実はほとんど気になりません」', body:'日韓カップルのリアルな日常を4枚の写真で。\n通訳サポート・文化理解プログラムありで安心。\n▶ まずは無料相談から', target:'関東 / 28〜38歳 女性 / 韓国文化・K-POP・海外旅行に関心', budget:'¥30,000/月', cpa:'¥12,000', why:'Instagram経由は<b>「生活イメージ」</b>で相談化。写真中心の訴求が効く。'},
   {plat:'Google広告', pc:'#4f8fd6', head:'日韓国際結婚の相談所｜通訳つきで安心', body:'「日韓 結婚相談所」「韓国人 お見合い」で検索した方へ。\n費用・流れを正直にご案内。初回相談無料。', target:'キーワード：日韓 結婚 / 韓国人 婚活 / 国際結婚 相談所', budget:'¥25,000/月', cpa:'¥28,000→目標¥18,000', why:'今のCPAは割高。<b>具体キーワードに絞る</b>とムダ打ちが減る。'},
   {plat:'YouTube広告', pc:'#e35d4e', head:'【15秒】韓国人男性との結婚、3つの誤解', body:'言葉・家族・ビザの誤解をテンポよく。\n最後に「無料相談へ」CTA。会員インタビュー素材を活用。', target:'関東 / 女性 / 婚活・韓国ドラマ視聴層 / リマーケ', budget:'¥20,000/月', cpa:'¥15,000', why:'動画は<b>人柄が伝わり入会率が高い</b>(50%)。認知〜信頼を一気に。'}
