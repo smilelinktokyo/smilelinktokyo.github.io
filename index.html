@@ -36,6 +36,7 @@ body.bold .sub{color:#6b6072;}
 .tab{background:#fff;border:1px solid var(--line);color:var(--sub);padding:8px 16px;border-radius:22px;font-size:13px;font-weight:700;cursor:pointer;transition:.15s;}
 .tab:hover{border-color:var(--rose);color:var(--rose);}
 .tab-ref{opacity:.72;}
+.tab-sep{width:100%;height:0;}
 .tab.on{background:var(--rose);border-color:var(--rose);color:#fff;box-shadow:0 3px 12px -4px var(--rose);}
 
 /* KPI */
@@ -151,15 +152,17 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
   <div class="tabbar">
     <div class="tab on" data-pane="dash">📊 ダッシュボード</div>
     <div class="tab" data-pane="pipe">🧭 パイプライン</div>
+    <div class="tab" data-pane="mem">👤 会員管理</div>
     <div class="tab" data-pane="src">📥 流入元分析</div>
     <div class="tab" data-pane="seg">🎯 入会しやすい人</div>
-    <div class="tab" data-pane="mem">👤 会員管理</div>
     <div class="tab" data-pane="ad">📣 広告・マーケティング</div>
     <div class="tab" data-pane="ai">✨ AIコンテンツ提案</div>
-    <div class="tab tab-ref" data-pane="omiai">💞 お見合い分析（IBJ・参考）</div>
+    <span class="tab-sep"></span>
     <div class="tab" data-pane="real" style="background:#f3f0fb;border-color:#e2d8f5;color:#7d54c4">📈 現実的な話</div>
     <div class="tab" data-pane="step" style="background:#eef7f1;border-color:#cfe7d8;color:#2f8a63">🚀 はじめ方</div>
     <div class="tab" data-pane="help" style="background:#fff8ec;border-color:#f0dcc0;color:#a97e33">📘 使い方・用語</div>
+    <span class="tab-sep"></span>
+    <div class="tab tab-ref" data-pane="omiai">💞 お見合い分析（IBJ・参考）</div>
   </div>
 
   <!-- ダッシュボード -->
