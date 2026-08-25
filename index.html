@@ -153,6 +153,7 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
     <div class="tab" data-pane="pipe">🧭 パイプライン</div>
     <div class="tab" data-pane="src">📥 流入元分析</div>
     <div class="tab" data-pane="seg">🎯 入会しやすい人</div>
+    <div class="tab" data-pane="mem">👤 会員管理</div>
     <div class="tab" data-pane="ad">📣 広告・マーケティング</div>
     <div class="tab" data-pane="ai">✨ AIコンテンツ提案</div>
     <div class="tab tab-ref" data-pane="omiai">💞 お見合い分析（IBJ・参考）</div>
@@ -343,6 +344,49 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
     </div>
   </div>
 
+  <!-- 会員管理 -->
+  <div class="pane" id="pane-mem">
+    <div class="guide"><div class="g-ttl">📘 このタブの使い方 — ご入会いただいた方の「カルテ」です</div>
+    <span class="g-step">1</span>ご入会が決まったら、そのままこのタブに移ります。<b>集客のカードがそのまま会員カルテになる</b>ので、入力し直しはありません。<br>
+    <span class="g-step">2</span>一覧では<b>「いま止まっている方」</b>が上に来ます。色（🟢活動中／🟡要フォロー／⚪休会）で状態がひと目で分かります。<br>
+    <span class="g-step">3</span>お一人ずつ<b>カルテ</b>があり、面談の記録・ご希望・次にやることを残せます。<br>
+    ⚠️ IBJのシステム（お相手検索・お見合い調整）は<b>そのまま今まで通り</b>です。ここは<b>サロン側の記録</b>で、二重入力にはなりません。</div>
+
+    <div class="kpis">
+      <div class="kpi hl"><div class="k-lab">在籍会員</div><div class="k-num">12</div><div class="k-sub">今月 <b>+5</b> 名</div></div>
+      <div class="kpi"><div class="k-lab">活動中</div><div class="k-num">9</div><div class="k-sub">直近2週間に動きあり</div></div>
+      <div class="kpi"><div class="k-lab">要フォロー</div><div class="k-num" style="color:var(--rose-deep)">2</div><div class="k-sub">2週間 動きなし</div></div>
+      <div class="kpi"><div class="k-lab">休会中</div><div class="k-num">1</div><div class="k-sub">再開のご連絡待ち</div></div>
+      <div class="kpi"><div class="k-lab">今月の成婚</div><div class="k-num">1</div><div class="k-sub">おめでとうございます🌸</div></div>
+    </div>
+
+    <div class="sec">
+      <h2>👤 会員一覧（動きが止まっている方が上）</h2>
+      <div class="h-note">ご入会日・ご契約プラン・いまの状態・最後に連絡した日・次にやること。<b>放置されている方が自動で上に来ます。</b></div>
+      <div style="overflow-x:auto">
+      <table class="wtbl">
+        <thead><tr><th>会員</th><th>ご入会</th><th class="hide-m">プラン</th><th>状態</th><th>最終連絡</th><th>次にやること</th></tr></thead>
+        <tbody id="memListBody"></tbody>
+      </table>
+      </div>
+      <div class="hint">💡 「最終連絡」から2週間たつと自動で🟡になり、LINEに通知が届きます。退会理由の上位は<b>「放っておかれた感じがした」</b>なので、ここが一番効きます。</div>
+    </div>
+
+    <div class="sec">
+      <h2>🗂 会員カルテ（お一人分の中身）</h2>
+      <div class="h-note">一覧でお名前をクリックすると開きます。面談で聞いたことを、その場で1〜2行残すだけで十分です。</div>
+      <div id="karte"></div>
+    </div>
+
+    <div class="sec">
+      <div class="ai-head">
+        <div><h2 style="margin:0">🤖 AI 会員フォロー案</h2><div class="h-note" style="margin:2px 0 0">止まっている方に、何と声をかけるか。カルテの内容をふまえて文面を作ります。</div></div>
+        <button class="ai-btn" onclick="genMemFollow()">💐 声かけ案を作る</button>
+      </div>
+      <div id="memFollowList"></div>
+    </div>
+  </div>
+
   <!-- 広告・マーケティング -->
   <div class="pane" id="pane-ad">
 <div class="guide"><div class="g-ttl">📘 このタブの使い方 — 広告は「1人入会にいくらか」で判断します</div><span class="g-step">1</span>表のいちばん右<b>獲得単価（CPA）</b>＝ご入会1名にかかった広告費。<b>安いほど良い</b>。<br><span class="g-step">2</span>費用¥0の行（ご紹介・ブログ・YouTube）＝<b>お金がかからない資産</b>。ここが育つと広告費が要らなくなります。<br><span class="g-step">3</span>新しい媒体は<b>いきなり増やさない</b>。月¥1〜2万で2〜3週間ためして、伸びた所にだけ寄せます。<br>⚠️ この画面の金額は<b>すべてサンプル</b>です。実際の単価は出してみないと分かりません。<div style="margin-top:7px;font-size:11.5px;color:var(--sub)">分からない言葉が出てきたら → 右端の <b>📘 使い方・用語</b> タブにぜんぶ書いてあります。</div></div>
@@ -441,22 +485,22 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
 
     <div class="sec">
       <h2>🧭 この画面が受け持つ範囲</h2>
-      <div class="h-note">サロンの仕事ぜんぶを1画面にまとめるものでは<b>ありません</b>。<b>「ご入会するまで」だけ</b>を受け持ちます。</div>
+      <div class="h-note">IBJのシステムと<b>役割を分けて</b>使います。重なるところを作らないのが大事です。</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px">
         <div style="background:linear-gradient(160deg,#fff,#fdeef3);border:1px solid #f6dbe6;border-radius:14px;padding:14px 16px">
-          <div style="font-size:12px;font-weight:800;color:var(--rose-deep);margin-bottom:6px">✅ ご入会まで ＝ この画面</div>
+          <div style="font-size:12px;font-weight:800;color:var(--rose-deep);margin-bottom:6px">✅ 集客（ご入会まで）＝ この画面</div>
           <div style="font-size:12.5px;color:#5a4f63;line-height:1.9">問い合わせの受付・返信<br>無料相談までの管理<br>どこから来たかの分析<br>広告・発信の判断</div>
         </div>
         <div style="background:linear-gradient(160deg,#fff,#eef4fb);border:1px solid #dbe6f4;border-radius:14px;padding:14px 16px">
-          <div style="font-size:12px;font-weight:800;color:var(--blue);margin-bottom:6px">🔵 ご入会後 ＝ IBJのシステム（今のまま）</div>
-          <div style="font-size:12.5px;color:#5a4f63;line-height:1.9">会員登録・お相手検索<br>お見合いの申込み・調整<br>交際・成婚の管理<br><span style="color:var(--sub)">→ 置き換えません。二重管理はしません</span></div>
+          <div style="font-size:12px;font-weight:800;color:var(--rose-deep);margin-bottom:6px">✅ ご入会後の「サロンの記録」＝ この画面</div>
+          <div style="font-size:12.5px;color:#5a4f63;line-height:1.9">会員一覧・カルテ（面談メモ）<br>いま止まっている方の検知<br>連絡の記録・声かけ案<br><span style="color:var(--sub)">→ 集客のカードがそのまま会員カルテに</span></div>
         </div>
         <div style="background:#fbf9f6;border:1px dashed var(--line);border-radius:14px;padding:14px 16px">
-          <div style="font-size:12px;font-weight:800;color:var(--sub);margin-bottom:6px">⚪ 対象外</div>
-          <div style="font-size:12.5px;color:#5a4f63;line-height:1.9">会費の請求・入金管理<br>契約書などの書類<br>会計・確定申告<br><span style="color:var(--sub)">→ 必要になれば後から足せます</span></div>
+          <div style="font-size:12px;font-weight:800;color:var(--blue);margin-bottom:6px">🔵 IBJのシステム（今のまま）</div>
+          <div style="font-size:12.5px;color:#5a4f63;line-height:1.9">お相手検索・お見合いの申込み<br>お見合いの日程調整<br>IBJへの会員登録<br><span style="color:var(--sub)">→ 置き換えません。二重入力にしません</span><br><br><span style="font-size:11.5px;color:var(--sub)">※会費の請求・契約書・会計は対象外（後から足せます）</span></div>
         </div>
       </div>
-      <div class="hint">💡 いちばん大事なのは<b>境目をはっきりさせること</b>です。入会後までこの画面で持とうとすると、IBJのシステムと二重入力になって続きません。だから<b>入会するまで</b>に絞っています。</div>
+      <div class="hint">💡 いちばん大事なのは<b>境目をはっきりさせること</b>です。<b>お相手探し・お見合い調整はIBJのシステム</b>、<b>サロンとしての記録（面談メモ・連絡・フォロー）はこの画面</b>。同じことを二度入力しないので続きます。</div>
     </div>
 
     <div class="sec">
@@ -838,6 +882,108 @@ function genFollow(){
 }
 genFollow();
 
+/* ===== 会員管理 ===== */
+var MEMLIST=[
+  {n:'R.I さん', ag:'女 27', joined:'2026/05/12', plan:'スタンダード', st:'follow', last:'18日前', act:'お見合い後のフォロー連絡（プレ交際0件）', src:'Instagram'},
+  {n:'H.N さん', ag:'女 38', joined:'2026/06/03', plan:'スタンダード', st:'follow', last:'15日前', act:'活動状況のヒアリング。申込が止まっている', src:'ご紹介'},
+  {n:'M.T さん', ag:'男 35', joined:'2026/07/20', plan:'ライト',      st:'active', last:'3日前',  act:'今週のおすすめ5名を送る', src:'YouTube'},
+  {n:'Y.S さん', ag:'女 29', joined:'2026/04/08', plan:'スタンダード', st:'active', last:'2日前',  act:'プロフィール写真の撮り直しをご案内', src:'Instagram'},
+  {n:'A.K さん', ag:'女 32', joined:'2026/03/15', plan:'プレミアム',   st:'active', last:'昨日',   act:'プレ交際中のお相手について面談', src:'ご紹介'},
+  {n:'J.P さん', ag:'男 33', joined:'2026/02/26', plan:'スタンダード', st:'active', last:'今日',   act:'真剣交際に進むか確認', src:'YouTube'},
+  {n:'K.M さん', ag:'女 36', joined:'2026/08/19', plan:'スタンダード', st:'active', last:'今日',   act:'プロフィール作成（初回サポート）', src:'YouTube'},
+  {n:'T.N さん', ag:'女 41', joined:'2026/01/10', plan:'ライト',       st:'rest',   last:'42日前', act:'休会中。9月に再開予定 → 月初に確認', src:'IBJブログ'},
+  {n:'S.M さん', ag:'女 39', joined:'2025/11/02', plan:'プレミアム',   st:'done',   last:'5日前',  act:'ご成婚🌸 退会手続き・ご紹介のお願い', src:'ご紹介'}
+];
+var ST={active:{t:'🟢 活動中', c:'#3fb489', bg:'#e6f6ef'}, follow:{t:'🟡 要フォロー', c:'#d9a441', bg:'#fdf3e0'},
+        rest:{t:'⚪ 休会中', c:'#8a7f92', bg:'#f3eff5'}, done:{t:'🌸 ご成婚', c:'#c94574', bg:'#fbe7ef'}};
+var ORDER={follow:0, active:1, rest:2, done:3};
+(function(){
+  var tb=document.getElementById('memListBody'); if(!tb) return;
+  var rows=MEMLIST.slice().sort(function(a,b){return ORDER[a.st]-ORDER[b.st];});
+  tb.innerHTML=rows.map(function(m){
+    var st=ST[m.st];
+    return '<tr style="cursor:pointer" onclick="showKarte(\''+m.n+'\')">'
+      +'<td style="color:var(--ink)"><b>'+m.n+'</b> <span style="font-size:11px;color:var(--sub)">'+m.ag+'</span></td>'
+      +'<td style="font-size:12.5px;color:#5a4f63">'+m.joined+'</td>'
+      +'<td class="hide-m" style="font-size:12.5px;color:#5a4f63">'+m.plan+'</td>'
+      +'<td><span class="conv-pill" style="color:'+st.c+';background:'+st.bg+';font-size:11.5px;white-space:nowrap">'+st.t+'</span></td>'
+      +'<td style="font-size:12.5px;color:'+(m.st==='follow'?'#c94574':'#5a4f63')+';font-weight:'+(m.st==='follow'?'800':'400')+'">'+m.last+'</td>'
+      +'<td style="font-size:12.5px;color:#5a4f63">'+m.act+'</td></tr>';
+  }).join('');
+})();
+
+var KARTE={
+ 'R.I さん':{goal:'1年以内のご成婚。ご実家のご両親にも安心してもらいたい',hope:'年齢±5歳／都内在住／お酒を飲まない方',
+   memo:['6/20 面談：お見合いは組めるが、会話が続かないのが不安とのこと','7/15 お見合い1件成立、プレ交際に進まず','8/07 お写真の反応は良い。当日の会話準備を一緒にやることに'],
+   log:['8/07 LINE：お見合いお疲れさまでした','7/28 面談（対面・60分）','7/15 LINE：お見合い日程のご連絡'],
+   warn:'お見合い成立1件に対しプレ交際0件。<b>当日フォローが必要</b>'},
+ 'H.N さん':{goal:'2年以内。焦らず、納得できる方と',hope:'年齢+3歳まで／中野〜新宿で会える方',
+   memo:['6/03 入会面談：40代になってから婚活を始めた不安が大きい','7/22 申込14件・OK4件と数は出ているが、お返事に時間がかかる'],
+   log:['8/10 LINE：今週のおすすめ','7/22 面談（オンライン・40分）'],
+   warn:'15日連絡なし。<b>申込が止まっている可能性</b>'},
+ 'A.K さん':{goal:'できれば年内にプレ交際から真剣交際へ',hope:'同年代／お休みが合う方',
+   memo:['3/15 入会。前の相談所から移籍','8/18 プレ交際3件目。今のお相手が本命とのこと'],
+   log:['8/24 面談（対面・45分）','8/18 LINE：おめでとうございます'],
+   warn:''}
+};
+function showKarte(name){
+  var w=document.getElementById('karte'); if(!w) return;
+  var m=null; MEMLIST.forEach(function(x){ if(x.n===name) m=x; });
+  var k=KARTE[name];
+  if(!k){ w.innerHTML='<div class="hint">💡 '+name+' のカルテはサンプルに含まれていません（実際にはすべての会員さんに作られます）。</div>'; return; }
+  var st=ST[m.st];
+  w.innerHTML='<div style="border:1px solid var(--line);border-radius:16px;padding:16px 18px;background:linear-gradient(160deg,#fff,#fdf7fa)">'
+    +'<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px">'
+      +'<div style="font-size:16px;font-weight:900">'+m.n+'</div>'
+      +'<span style="font-size:11.5px;color:var(--sub);font-weight:700">'+m.ag+'・'+m.plan+'・'+m.joined+' ご入会・きっかけ：'+m.src+'</span>'
+      +'<span class="conv-pill" style="color:'+st.c+';background:'+st.bg+';font-size:11.5px">'+st.t+'</span></div>'
+    +(k.warn?'<div class="bneck" style="margin:0 0 12px"><div class="b-body">⚠️ '+k.warn+'</div></div>':'')
+    +'<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px">'
+      +'<div style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px">'
+        +'<div style="font-size:12px;font-weight:800;color:var(--rose-deep);margin-bottom:5px">🎯 目標・ご希望</div>'
+        +'<div style="font-size:12.5px;color:#5a4f63;line-height:1.9">'+k.goal+'<br><span style="color:var(--sub)">条件：'+k.hope+'</span></div></div>'
+      +'<div style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px">'
+        +'<div style="font-size:12px;font-weight:800;color:var(--blue);margin-bottom:5px">📝 面談メモ</div>'
+        +'<div style="font-size:12.5px;color:#5a4f63;line-height:1.9">'+k.memo.map(function(x){return '・'+x;}).join('<br>')+'</div></div>'
+      +'<div style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px">'
+        +'<div style="font-size:12px;font-weight:800;color:var(--green);margin-bottom:5px">💬 連絡の記録</div>'
+        +'<div style="font-size:12.5px;color:#5a4f63;line-height:1.9">'+k.log.map(function(x){return '・'+x;}).join('<br>')+'</div></div>'
+    +'</div>'
+    +'<div style="margin-top:12px;font-size:12.5px;color:#5a4f63;border-top:1px dashed var(--line);padding-top:10px">🎬 <b>次にやること</b>：'+m.act+'</div>'
+    +'<div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">'
+      +'<button style="background:var(--rose);color:#fff;border:none;border-radius:20px;padding:7px 16px;font-size:12px;font-weight:800;cursor:pointer">💬 LINEで連絡する</button>'
+      +'<button style="background:#fff;border:1px solid var(--line);color:var(--sub);border-radius:20px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer">📝 面談メモを追加</button>'
+      +'<button style="background:#fff;border:1px solid var(--line);color:var(--sub);border-radius:20px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer">⏰ 次回の予定を入れる</button></div>'
+    +'</div>';
+}
+showKarte('R.I さん');
+
+var MEMFOLLOW=[
+  {type:'🟡 2週間 動きなし', ttl:'H.Nさん（15日連絡なし）への声かけ', body:'「H.Nさん、こんにちは。その後いかがですか？\n申込みのペースが少し落ちているようでしたので、気になってご連絡しました。\n今週、15分だけお電話かLINEでお話しできませんか？ 進め方を一緒に整理しましょう。」', why:'退会理由の上位は<b>「放っておかれた感じがした」</b>。用件が無くても<b>2週間に1回</b>は接点を作るのが効きます。'},
+  {type:'💬 お見合い後フォロー', ttl:'R.Iさん（成立1件・プレ交際0件）', body:'「先日のお見合い、おつかれさまでした。\n良かったところを3つだけ挙げてみませんか？ 次に活かせます。\n当日の会話は準備でかなり変わるので、次回はテーマを一緒に用意しましょう。」', why:'サロン全体のプレ交際成立率は<b>61%</b>。R.Iさんだけ0件なので、当日の会話が原因の可能性が高いです。'},
+  {type:'⚪ 休会中', ttl:'T.Nさん（9月再開予定）への月初連絡', body:'「T.Nさん、9月になりましたね。その後お体やお仕事はいかがですか？\n再開のご予定に変わりがなければ、9月中旬から動けるようご準備しておきます。\nもう少し先でも大丈夫ですので、ご都合を教えてください。」', why:'休会は<b>こちらから連絡しないとそのまま退会</b>になりがちです。月初の1通で再開率が変わります。'},
+  {type:'🌸 ご成婚後', ttl:'S.Mさんへ（ご紹介のお願い）', body:'「ご成婚、本当におめでとうございます。\nもしよろしければ、同じように悩んでいるお友だちがいらしたら、\n一言お伝えいただけると嬉しいです。ご紹介の方には初回費用の割引をご用意しています。」', why:'ご紹介の入会率は<b>67%</b>で全チャネル中1位。<b>広告費0円</b>で最も濃い方が来ます。'}
+];
+var mfShown=0;
+function genMemFollow(){
+  var list=document.getElementById('memFollowList'); if(!list) return;
+  var batch=MEMFOLLOW.slice(mfShown,mfShown+2);
+  if(!batch.length){ mfShown=0; batch=MEMFOLLOW.slice(0,2); }
+  if(mfShown===0) list.innerHTML='';
+  batch.forEach(function(a){
+    var d=document.createElement('div'); d.className='ai-card';
+    d.innerHTML='<div class="a-type">'+a.type+'</div><div class="a-ttl">'+a.ttl+'</div>'
+      +'<div class="a-body">'+a.body+'</div>'
+      +'<div style="display:flex;gap:8px;margin-top:12px">'
+        +'<button style="background:var(--rose);color:#fff;border:none;border-radius:20px;padding:7px 16px;font-size:12px;font-weight:800;cursor:pointer">💬 この文面でLINE送信</button>'
+        +'<button style="background:#fff;border:1px solid var(--line);color:var(--sub);border-radius:20px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer">✎ 直す</button></div>'
+      +'<div class="a-why">根拠 '+a.why+'</div>';
+    list.appendChild(d);
+  });
+  mfShown+=2;
+}
+genMemFollow();
+
 /* ===== はじめ方（導入ステップ） ===== */
 var STEP_NOW=[
   {t:'メールで来た問い合わせを自動でカード化', e:'◎◎◎', d:'数日', p:'メールの転送設定だけ（こちらで手順をお渡しします）', w:'取りこぼしが無くなります。いちばん効きます'},
@@ -919,7 +1065,9 @@ var AUTOS=[
   ['返信スピード','届いた時刻と、自分が返した時刻の差を自動計算','🤖 完全自動'],
   ['入会しやすさスコア','上の情報から自動で計算。問い合わせが来た瞬間に付く','🤖 完全自動'],
   ['AIの発信案・広告案','たまったデータから自動生成。ボタンを押すだけ','🤖 完全自動'],
+  ['止まっている会員さんの検知','最後に連絡した日から2週間で自動的に🟡＋LINE通知','🤖 完全自動'],
   ['「相談しました」','実際にお会いしたかは機械には分かりません → <b>カードを1つ動かす</b>','✍️ 1タップ'],
+  ['面談メモ・カルテ','話した内容は機械には分かりません → <b>1〜2行だけ入力</b>','✍️ 手入力'],
   ['「ご入会されました」','同上 → <b>カードを1つ動かす</b>（ご入金メールを合図に自動化も可能）','✍️ 1タップ'],
   ['お電話での問い合わせ','メールが来ないため検知できません → ワンタップで1件追加','✍️ 1タップ']
 ];
