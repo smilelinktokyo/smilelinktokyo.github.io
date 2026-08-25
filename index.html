@@ -21,6 +21,17 @@ header .ttl{font-size:20px;font-weight:800;letter-spacing:.3px;}
 header .ttl span{color:var(--rose);}
 header .sub{font-size:12px;color:var(--sub);}
 .badge-demo{background:var(--rose-soft);color:var(--rose-deep);font-size:11px;font-weight:800;padding:4px 11px;border-radius:20px;}
+/* 文字サイズ・太さ切替（読みやすさ） */
+.a11y{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.a11y .lab{font-size:11px;color:var(--sub);font-weight:700;margin-right:2px;}
+.a11y button{background:#fff;border:1px solid var(--line);color:var(--sub);border-radius:18px;padding:5px 12px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;}
+.a11y button:hover{border-color:var(--rose);color:var(--rose);}
+.a11y button.on{background:var(--rose);border-color:var(--rose);color:#fff;}
+.a11y button.big{font-size:15px;padding:5px 13px;}
+body.bold{font-weight:600;}
+body.bold .h-note,body.bold .hint,body.bold .k-lab,body.bold .k-sub,body.bold .guide,body.bold .src-row.head,body.bold .wtbl th,body.bold .adtbl th,body.bold .mtbl th,body.bold .a-why,body.bold footer{color:#5c5266;}
+body.bold .ai-card .a-body,body.bold .qa .a{color:#463d51;}
+body.bold .sub{color:#6b6072;}
 .tabbar{display:flex;gap:6px;flex-wrap:wrap;margin:16px 0 20px;}
 .tab{background:#fff;border:1px solid var(--line);color:var(--sub);padding:8px 16px;border-radius:22px;font-size:13px;font-weight:700;cursor:pointer;transition:.15s;}
 .tab:hover{border-color:var(--rose);color:var(--rose);}
@@ -110,8 +121,11 @@ header .sub{font-size:12px;color:var(--sub);}
 .hint{font-size:12px;color:var(--sub);background:#f7f2f5;border-radius:10px;padding:10px 14px;margin-top:6px;}
 footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
 @media(max-width:640px){
-  .src-row{grid-template-columns:88px 1fr 42px 42px 50px;} .src-row .hide-m{display:none;}
-  .fn-lab{width:96px;font-size:12px;}
+  .wrap{padding:16px 10px 50px;}
+  .sec{padding:16px 14px;}
+  .src-row{grid-template-columns:76px 1fr 36px 36px 44px;gap:7px;} .src-row .hide-m{display:none;}
+  .fn-lab{width:88px;font-size:12px;}
+  .kpis{grid-template-columns:repeat(auto-fit,minmax(132px,1fr));}
 }
 </style>
 </head>
@@ -122,7 +136,16 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
       <div class="ttl">💐 婚活サポート スマイルリンク <span>集客ダッシュボード</span></div>
       <div class="sub">東京･中野／30代・40代女性の婚活サポート（IBJ正規加盟店）　—　問い合わせ → 無料相談 → ご入会 まで、集客をまるっと見える化</div>
     </div>
-    <div class="badge-demo">サンプル画面（構想）</div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+      <div class="badge-demo">サンプル画面（構想）</div>
+      <div class="a11y">
+        <span class="lab">🔍 文字</span>
+        <button data-fs="1" onclick="setFs(1)">小</button>
+        <button data-fs="1.15" onclick="setFs(1.15)" class="big">中</button>
+        <button data-fs="1.3" onclick="setFs(1.3)" class="big" style="font-size:17px">大</button>
+        <button id="boldBtn" onclick="toggleBold()">太字</button>
+      </div>
+    </div>
   </header>
 
   <div class="tabbar">
@@ -142,7 +165,7 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
 <div class="guide"><div class="g-ttl">📘 このタブの使い方 — まずはここだけ見ればOKです</div><span class="g-step">1</span>いちばん上の5つの数字＝<b>今月の実績</b>です。「問い合わせが何件来て、何人がご入会したか」。<br><span class="g-step">2</span>その下の<b>ファネル（じょうご）</b>＝人がどこで減っているか。バーが急に短くなる所が、いま直すべき場所です。<br><span class="g-step">3</span>いちばん下＝<b>どこから来た人</b>が入会まで進んだか。<br>👉 毎朝ここを1分見るだけで、「今日どこに力を入れるか」が決まります。<br>📌 <b>この数字はIBJから来るものではありません。</b>メール・LINEに届いた問い合わせと、先生が動かしたカードを、この画面が<b>自分で数えています</b>（IBJの別料金オプションは不要です）。<div style="margin-top:7px;font-size:11.5px;color:var(--sub)">分からない言葉が出てきたら → 右端の <b>📘 使い方・用語</b> タブにぜんぶ書いてあります。</div></div>
     <div class="kpis">
       <div class="kpi hl"><div class="k-lab">今月の問い合わせ</div><div class="k-num">24</div><div class="k-sub"><b>+6</b> 先月比</div></div>
-      <div class="kpi"><div class="k-lab">無料相談</div><div class="k-num">12</div><div class="k-sub">予約率 <b>62%</b></div></div>
+      <div class="kpi"><div class="k-lab">無料相談（実施）</div><div class="k-num">12</div><div class="k-sub">予約15件 → 実施 <b>80%</b></div></div>
       <div class="kpi"><div class="k-lab">ご入会</div><div class="k-num">5</div><div class="k-sub">相談→入会 <b>42%</b></div></div>
       <div class="kpi"><div class="k-lab">総合転換率</div><div class="k-num">20.8%</div><div class="k-sub">問い合わせ→入会</div></div>
       <div class="kpi"><div class="k-lab">獲得単価(CPA)</div><div class="k-num">¥18,000</div><div class="k-sub"><b class="dn">-¥4,000</b> 改善</div></div>
@@ -277,8 +300,8 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
       <div class="kpi hl"><div class="k-lab">全体の入会率</div><div class="k-num">20.8%</div><div class="k-sub">問い合わせ → 入会</div></div>
       <div class="kpi"><div class="k-lab">いちばん入会しやすい層</div><div class="k-num" style="font-size:19px">ご紹介×40代前半</div><div class="k-sub">入会率 <b>67%</b></div></div>
       <div class="kpi"><div class="k-lab">30分以内に返信</div><div class="k-num">38%</div><div class="k-sub">入会率（全体の約2倍）</div></div>
-      <div class="kpi"><div class="k-lab">24時間以上たった返信</div><div class="k-num" style="color:var(--rose-deep)">6%</div><div class="k-sub">ほぼ入会に至らない</div></div>
-      <div class="kpi"><div class="k-lab">今週の要優先フォロー</div><div class="k-num">3</div><div class="k-sub">スコアが高い問い合わせ</div></div>
+      <div class="kpi"><div class="k-lab">翌日以降の返信</div><div class="k-num" style="color:var(--rose-deep)">0%</div><div class="k-sub">入会に至った方はゼロ</div></div>
+      <div class="kpi"><div class="k-lab">今週の要優先フォロー</div><div class="k-num">2</div><div class="k-sub">スコアが高い問い合わせ</div></div>
     </div>
 
     <div class="sec">
@@ -297,7 +320,7 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
         <div class="a-body">・<b>年代</b>：35〜44歳（30代後半29%・40代前半25%／40代後半〜は0%）
 ・<b>エリア</b>：中野・新宿・杉並（対面で通える。近隣は入会率33%、オンラインのみは0%）
 ・<b>知ったきっかけ</b>：YouTube・ご紹介（＝<b>人柄を見てから</b>来ている。写真や動画で先生を知っている方は強い）
-・<b>問い合わせ文</b>：費用・期間・流れなど<b>具体的な質問がある</b>（入会率46%／「とりあえず資料が欲しい」は9%）
+・<b>問い合わせ文</b>：費用・期間・流れなど<b>具体的な質問がある</b>（入会率45%／「とりあえず資料が欲しい」は0%）
 ・<b>動き</b>：問い合わせから<b>3日以内</b>に無料相談まで進んでいる
 ・<b>共感ポイント</b>：「40代で婚活・成婚した仲人」という先生ご自身の経験に反応している</div>
         <div class="a-why">根拠：直近の入会者5名のうち4名がこの条件に2つ以上あてはまっています。逆に「深夜の一言問い合わせ・返信が翌々日」は入会0でした。<b>オンラインのみの方は入会0</b>ですが、これは「オンラインがダメ」ではなく<b>オンライン向けの案内が用意できていない</b>可能性があります。</div>
@@ -324,12 +347,14 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
   <div class="pane" id="pane-ad">
 <div class="guide"><div class="g-ttl">📘 このタブの使い方 — 広告は「1人入会にいくらか」で判断します</div><span class="g-step">1</span>表のいちばん右<b>獲得単価（CPA）</b>＝ご入会1名にかかった広告費。<b>安いほど良い</b>。<br><span class="g-step">2</span>費用¥0の行（ご紹介・ブログ・YouTube）＝<b>お金がかからない資産</b>。ここが育つと広告費が要らなくなります。<br><span class="g-step">3</span>新しい媒体は<b>いきなり増やさない</b>。月¥1〜2万で2〜3週間ためして、伸びた所にだけ寄せます。<br>⚠️ この画面の金額は<b>すべてサンプル</b>です。実際の単価は出してみないと分かりません。<div style="margin-top:7px;font-size:11.5px;color:var(--sub)">分からない言葉が出てきたら → 右端の <b>📘 使い方・用語</b> タブにぜんぶ書いてあります。</div></div>
     <div class="sec">
-      <h2>📣 広告・マーケティング管理</h2>
-      <div class="h-note">「どこにいくら使って、何人入会したか」＝ 獲得単価(CPA)。広告を出す前も出した後も、効くところにお金を寄せられます。</div>
+      <h2>📣 広告・マーケティング管理（直近3か月の累計）</h2>
+      <div class="h-note">「どこにいくら使って、何人入会したか」＝ 獲得単価(CPA)。広告を出す前も出した後も、効くところにお金を寄せられます。<br>⚠️ <b>この表だけ「直近3か月の累計」</b>です（ダッシュボードの数字は「今月」）。広告は1か月では判断できないため、まとめて見ます。
+      <div style="overflow-x:auto">
       <table class="adtbl">
         <thead><tr><th>チャネル / 施策</th><th class="r">費用</th><th class="r">問合</th><th class="r">入会</th><th class="r">獲得単価</th><th>評価</th></tr></thead>
         <tbody id="adBody"></tbody>
       </table>
+      </div>
       <div class="hint">💡 サンプル：<b>リール広告</b>と<b>LINE広告</b>はCPAが安く効率◎（LINEは「友だち追加」で課金＝そのまま相談につながる）。<b>TikTokは問い合わせは来るのに入会0</b>＝年齢層がズレているサイン。まず少額でテストして、伸びた所にだけ寄せます。IBJブログ・ご紹介は費用0の資産。</div>
     </div>
     <div class="sec">
@@ -510,10 +535,10 @@ function convColor(r){ return r>=40?'#3fb489':r>=20?'#d9a441':'#c94574'; }
 /* パイプライン */
 (function(){
   var cols=[
-    {t:'📩 問い合わせ', c:'#e5648e', cards:[{n:'A.Kさん(32)', s:'Instagram', d:'2日前', a:1},{n:'M.Tさん(29)', s:'YouTube', d:'1日前', a:1},{n:'S.Yさん(35)', s:'電話', d:'今日', a:0}]},
+    {t:'📩 問い合わせ', c:'#e5648e', cards:[{n:'W.Hさん(32)', s:'Instagram', d:'2日前', a:1},{n:'E.Wさん(29)', s:'YouTube', d:'1日前', a:1},{n:'U.Kさん(35)', s:'電話', d:'今日', a:0}]},
     {t:'📅 相談予約', c:'#d9a441', cards:[{n:'R.Nさん(31)', s:'ご紹介', d:'相談 8/27', a:0},{n:'K.Hさん(38)', s:'Instagram', d:'相談 8/28', a:1}]},
-    {t:'💬 相談実施', c:'#4f8fd6', cards:[{n:'Y.Sさん(34)', s:'IBJブログ', d:'検討中', a:1}]},
-    {t:'💍 ご入会', c:'#3fb489', cards:[{n:'T.Aさん(33)', s:'YouTube', d:'8/24 入会🎉', a:1},{n:'N.Oさん(30)', s:'ご紹介', d:'8/22 入会🎉', a:0}]}
+    {t:'💬 相談実施', c:'#4f8fd6', cards:[{n:'C.Fさん(34)', s:'IBJブログ', d:'検討中', a:1}]},
+    {t:'💍 ご入会', c:'#3fb489', cards:[{n:'G.Mさん(33)', s:'YouTube', d:'8/24 入会🎉', a:1},{n:'N.Oさん(30)', s:'ご紹介', d:'8/22 入会🎉', a:0}]}
   ];
   var h='';
   cols.forEach(function(col){
@@ -543,7 +568,7 @@ function convColor(r){ return r>=40?'#3fb489':r>=20?'#d9a441':'#c94574'; }
   var h='';
   ads.forEach(function(a){
     var cpa=a.join?Math.round(a.cost/a.join):0;
-    var cpaStr=a.cost===0?'¥0':('¥'+cpa.toLocaleString());
+    var cpaStr=a.cost===0?'¥0':(a.join?('¥'+cpa.toLocaleString()):'—');
     var cls=a.cost===0?'cpa-good':(cpa<=20000?'cpa-good':'cpa-bad');
     var chipC=a.good?'#3fb489':'#c94574';
     h+='<tr><td style="font-weight:700">'+a.ch+'</td><td class="r">'+(a.cost?'¥'+a.cost.toLocaleString():'¥0')+'</td>'
@@ -585,7 +610,7 @@ var AD_POOL=[
   {plat:'LINE広告（友だち追加）', pc:'#06c755', head:'「40代からの婚活、まだ間に合います」', body:'まずはLINEで。相談の予約も、質問も、ぜんぶLINEで完結。\n40代で婚活・成婚した仲人が、少人数制で伴走します。\n▶ 友だち追加はこちら', target:'東京都 / 35〜49歳 女性 / 未婚 / LINEのオーディエンス配信', budget:'¥20,000/月', cpa:'¥10,000（友だち追加 約¥300〜）', why:'先生の窓口が<b>LINE</b>なので、広告→友だち追加→相談が<b>一度も途切れません</b>。日本の30〜40代女性への到達はLINEが最大級です。'},
   {plat:'TikTok（まず無料投稿でテスト）', pc:'#111', head:'「婚活で“条件”から入ると、なぜ疲れるのか」', body:'いきなり広告費は使いません。リールの素材をそのまま縦型で投稿し、\n2週間の反応（保存数・プロフィール遷移）だけ見ます。\n伸びたら、その動画だけを広告に回します。', target:'テスト段階のため設定なし（オーガニック投稿）', budget:'¥0（テスト）→ 反応が出たら ¥10,000/月', cpa:'未知数（サンプルでは入会0）', why:'TikTokは<b>年齢層が若い</b>のが定説です。先生の客層（30〜40代）と合うかは<b>やってみないと分からない</b>ので、<b>お金を使う前に無料で確かめます</b>。'},
   {plat:'Instagram広告', pc:'#e5648e', head:'「“いつか”を、そろそろ終わりにしませんか」', body:'東京･中野の少人数制サロン。30代・40代女性の婚活に伴走します。\n40代で婚活・成婚した仲人が、あなたの進め方を一緒に整理します。\n▶ まずは無料相談から', target:'東京都・中野から半径15km / 33〜47歳 女性 / 婚活・ライフスタイルに関心', budget:'¥30,000/月', cpa:'¥12,000', why:'Instagram経由は<b>「生活イメージ」</b>で相談化。写真中心の訴求が効きます。'},
-  {plat:'Google広告', pc:'#4f8fd6', head:'中野の結婚相談所｜30代・40代女性の婚活', body:'「中野 結婚相談所」「40代 婚活」で検索した方へ。\n費用・期間・流れを正直にご案内。初回相談無料・オンライン可。', target:'キーワード：中野 結婚相談所 / 40代 婚活 / IBJ 加盟店 東京', budget:'¥25,000/月', cpa:'¥28,000→目標¥18,000', why:'今のCPAは割高。<b>地域名＋年代</b>に絞るとムダ打ちが減ります。'},
+  {plat:'Google広告', pc:'#4f8fd6', head:'中野の結婚相談所｜30代・40代女性の婚活', body:'「中野 結婚相談所」「40代 婚活」で検索した方へ。\n費用・期間・流れを正直にご案内。初回相談無料・オンライン可。', target:'キーワード：中野 結婚相談所 / 40代 婚活 / IBJ 加盟店 東京', budget:'¥25,000/月', cpa:'¥42,000→目標¥18,000', why:'今のCPAは割高。<b>地域名＋年代</b>に絞るとムダ打ちが減ります。'},
   {plat:'YouTube広告', pc:'#e35d4e', head:'【15秒】40代の婚活、3つの誤解', body:'「もう遅い」「条件で選ばれる」「時間がかかる」をテンポよく。\n最後に「無料相談へ」CTA。ご自身の成婚エピソードが最強の素材です。', target:'東京都 / 女性 / 婚活・ライフスタイル視聴層 / リマーケ', budget:'¥20,000/月', cpa:'¥15,000', why:'動画は<b>人柄が伝わり入会率が高い</b>(50%)。認知〜信頼を一気に作れます。'}
 ];
 var adShown=0;
@@ -684,8 +709,8 @@ var SCORES=[
 
 /* この層に刺さる発信 */
 var SEG_POST=[
-  {type:'YouTube 企画', ttl:'「40代から始める婚活、費用と期間ぜんぶ話します」', body:'入会率が高いのは「費用・期間を具体的に聞いてくる30代後半」。\n＝ 知りたいことに先に全部答える動画が、いちばん相談につながります。\n・実際の金額を画面に出す（ぼかさない）\n・活動期間の中央値、成婚までの流れ\n・最後に「無料相談で個別に見積もります」', why:'具体的な質問をくれた方の入会率は<b>46%</b>、「資料だけ」は<b>9%</b>。<b>先に情報を出すほど濃い問い合わせ</b>が来ます。'},
-  {type:'Instagram 投稿', ttl:'「都内・30代後半の会員さまの活動スケジュール」', body:'平日は仕事、土曜にお見合い1〜2件…という現実的な1週間を図解。\n「忙しくてもできる」を見せると、この層が動きます。', why:'都内（30分圏）の入会率は<b>31%</b>、都外は<b>9%</b>。<b>通える距離</b>の方に的を絞ると効率が上がります。'},
+  {type:'YouTube 企画', ttl:'「40代から始める婚活、費用と期間ぜんぶ話します」', body:'入会率が高いのは「費用・期間を具体的に聞いてくる30代後半」。\n＝ 知りたいことに先に全部答える動画が、いちばん相談につながります。\n・実際の金額を画面に出す（ぼかさない）\n・活動期間の中央値、成婚までの流れ\n・最後に「無料相談で個別に見積もります」', why:'具体的な質問をくれた方の入会率は<b>45%</b>、「資料だけ」は<b>0%</b>。<b>先に情報を出すほど濃い問い合わせ</b>が来ます。'},
+  {type:'Instagram 投稿', ttl:'「都内・30代後半の会員さまの活動スケジュール」', body:'平日は仕事、土曜にお見合い1〜2件…という現実的な1週間を図解。\n「忙しくてもできる」を見せると、この層が動きます。', why:'近隣（中野・新宿・杉並）の入会率は<b>33%</b>、オンラインのみの方は<b>0%</b>。<b>通える距離</b>の方に的を絞ると効率が上がります。'},
   {type:'ブログ 記事', ttl:'「ご紹介でご入会された方が、いちばん早く成婚する理由」', body:'紹介の入会率は67%と最強。紹介が増える記事を書く。\n・入会者インタビュー\n・お友だち紹介特典のご案内', why:'ご紹介は入会率<b>67%</b>で全チャネル中1位。<b>広告費0円</b>で最も濃い層が来ます。'},
   {type:'返信テンプレ改善', ttl:'「30分以内の一次返信」を自動化する', body:'問い合わせメールを検知したら、AIが下書きを用意 → 先生は送信ボタンだけ。\n・お名前、質問内容を反映した文面\n・相談枠を2つ提案（選ぶだけにする）', why:'30分以内に返信した方の入会率は<b>38%</b>、翌日以降は<b>0%</b>。発信より先に<b>ここが効きます</b>。'}
 ];
@@ -730,7 +755,7 @@ var OM_FUNNEL=[
 
 /* 会員別（すべてダミー） */
 var MEMBERS=[
-  {n:'A.K さん', s:'女 32', hit:210, clk:64, view:41, app:12, ok:5, met:4, pre:3},
+  {n:'A.K さん', s:'女 32', hit:210, clk:64, view:41, app:12, ok:5, met:4, pre:4},
   {n:'Y.S さん', s:'女 29', hit:296, clk:27, view:18, app:9,  ok:3, met:3, pre:2},
   {n:'M.T さん', s:'男 35', hit:132, clk:38, view:26, app:2,  ok:1, met:1, pre:1},
   {n:'H.N さん', s:'女 38', hit:181, clk:52, view:33, app:14, ok:4, met:3, pre:0},
@@ -767,7 +792,7 @@ function omRate(v,g,y){ return v>=g?'g':(v>=y?'y':'r'); }
 
 /* AI 会員フォロー提案 */
 var FOLLOW_POOL=[
-  {type:'📷 写真テコ入れ', ttl:'Y.Sさん・R.Iさん：メイン写真の差し替え提案', body:'「検索には出ているのに写真を押されない」状態です。\n・提携フォトスタジオでの再撮影をご案内（明るい屋外・自然な笑顔）\n・サブ写真に「趣味の場面」を1枚追加\n・声かけ例：「今のお写真もとても素敵なのですが、検索での反応をもう一段上げたいので、一度だけ撮り直してみませんか？」', why:'写真クリック率はサロン平均<b>25%</b>。Y.Sさんは<b>9%</b>で、検索該当数はサロン最多です。'},
+  {type:'📷 写真テコ入れ', ttl:'Y.Sさん：メイン写真の差し替え提案', body:'「検索には出ているのに写真を押されない」状態です。\n・提携フォトスタジオでの再撮影をご案内（明るい屋外・自然な笑顔）\n・サブ写真に「趣味の場面」を1枚追加\n・声かけ例：「今のお写真もとても素敵なのですが、検索での反応をもう一段上げたいので、一度だけ撮り直してみませんか？」', why:'写真クリック率はサロン平均<b>25%</b>。Y.Sさんは<b>9%</b>と大きく下回るのに、<b>検索に出た回数はサロン最多（296回）</b>です。ここを直すのが最短です。'},
   {type:'📮 申込数アップ', ttl:'M.Tさん：今週の申込を「週5件」に', body:'申込が月2件では、確率的にお見合いが成立しません。\n・条件を1つだけ緩める（年齢＋2歳 / エリア＋1路線）\n・毎週月曜に「今週のおすすめ5名」をこちらから送付\n・声かけ例：「まずは会ってみないと分からない部分が多いので、今週は5名だけ一緒に選んでみましょう」', why:'IBJの実績上、<b>申込数 × OK率(34%)</b> がほぼそのままお見合い数になります。'},
   {type:'💬 お見合い後フォロー', ttl:'H.Nさん・R.Iさん：当日24時間以内のフォロー', body:'お見合いは成立しているのにプレ交際に進んでいません。\n・当日中に振り返り（お相手の良かった点を3つ言語化）\n・次回に向けた会話テーマシートをお渡し\n・声かけ例：「今日はいかがでしたか？次に活かせるところを一緒に整理しましょう」', why:'サロン全体のプレ交際成立率は<b>61%</b>。この2名だけ大きく下回っています。'},
   {type:'✍️ プロフィール文', ttl:'全会員：プロフィール本文のAIリライト', body:'写真は見られているのに申込に至らない方向けに、AIが本文を書き直します。\n・冒頭2行に「人柄」と「結婚後のイメージ」\n・NG：条件の羅列 ／ OK：具体的なエピソードを1つ\n・40代の方は「年齢への不安」を先に一言で消しておく', why:'閲覧→申込が<b>25%未満</b>の会員は、写真ではなく<b>本文</b>で止まっています。'},
@@ -949,6 +974,29 @@ var QAS=[
   w.innerHTML=QAS.map(function(r){
     return '<div class="qa"><div class="q">Q. '+r[0]+'</div><div class="a">A. '+r[1]+'</div></div>';
   }).join('');
+})();
+
+/* ===== 文字サイズ・太さ（読みやすさ） ===== */
+function setFs(v){
+  document.querySelector('.wrap').style.zoom = v;
+  document.querySelectorAll('.a11y button[data-fs]').forEach(function(b){
+    b.classList.toggle('on', parseFloat(b.getAttribute('data-fs'))===v);
+  });
+  try{ localStorage.setItem('kk_fs', v); }catch(e){}
+}
+function toggleBold(){
+  var on = document.body.classList.toggle('bold');
+  document.getElementById('boldBtn').classList.toggle('on', on);
+  try{ localStorage.setItem('kk_bold', on?'1':'0'); }catch(e){}
+}
+(function(){
+  var fs=1, bold=false;
+  try{
+    fs = parseFloat(localStorage.getItem('kk_fs')) || 1;
+    bold = localStorage.getItem('kk_bold')==='1';
+  }catch(e){}
+  setFs(fs);
+  if(bold){ document.body.classList.add('bold'); document.getElementById('boldBtn').classList.add('on'); }
 })();
 
 /* タブ切替 */
