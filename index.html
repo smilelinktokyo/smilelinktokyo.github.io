@@ -442,6 +442,11 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
         <button class="ai-btn" onclick="genMore()">🔮 今週の提案を作る</button>
       </div>
       <div id="aiList"></div>
+      <div class="sec" style="background:linear-gradient(160deg,#fff,#f7f2fb);border-color:#eee3f5;margin:16px 0 0">
+        <h2>🔬 AIはどうやって作るのか（適当に書いているわけではありません）</h2>
+        <div class="h-note">「AIが勝手に考えた文章」ではなく、<b>3つの材料</b>を読ませて作っています。</div>
+        <div id="aiHow"></div>
+      </div>
       <div class="hint">💡 実際にはワンクリックで、Instagramのキャプション・YouTubeの企画・ブログの下書きまで自動生成します（<b>スマイルリンクさんの発信トーンに合わせて</b>学習します）。<br>
       ※ <b>この見本画面のボタンは、あらかじめ用意した文章が出るだけ</b>です。実際には、その時のデータ（どの投稿が相談につながったか・今どの層が来ているか）をAIが読んで<b>毎回ちがう案を新しく作ります</b>。<b>週1回、自動で作ってLINEに届ける</b>こともできます（画面を開かなくて済みます）。</div>
     </div>
@@ -721,6 +726,29 @@ var TODAY=[
       +'<td><span class="chip" style="background:'+chipC+'22;color:'+chipC+'">'+a.note+'</span></td></tr>';
   });
   document.getElementById('adBody').innerHTML=h;
+})();
+
+/* AI 생성 방식 설명 */
+var AIHOW=[
+  {n:'材料 1', c:'var(--rose)', t:'サロンのこと（変わらない情報）',
+   d:'東京･中野／30代・40代女性／少人数制／IBJ正規加盟店／<b>40代でご自身が婚活・成婚された仲人</b>／対面＋全国オンライン。<br>これが「誰が、誰に向けて話すか」の土台になります。'},
+  {n:'材料 2', c:'var(--gold)', t:'実際の数字（毎日変わる情報）',
+   d:'どのチャネルが<b>相談・入会まで運んでくれたか</b>／どんな問い合わせ文の方が入会したか／いまどの年代・エリアが来ているか。<br>→ だから提案の下に「なぜ効くか」の<b>根拠</b>が付きます。数字が変われば提案も変わります。'},
+  {n:'材料 3', c:'var(--blue)', t:'これまでの発信（トーン）',
+   d:'過去の投稿・リールの言い回しと、その反応（再生・保存・プロフィール遷移）。<br>→ <b>やわらかい写真＋問いかけコピー</b>というスマイルリンクさんの色を崩さずに書きます。'},
+  {n:'つくる', c:'var(--purple)', t:'3つの材料を読ませて、案を出す',
+   d:'「見出し・本文・ハッシュタグ・最後のひと言（CTA）」まで、そのまま使える形で3案。<br>⚠️ <b>そのまま投稿する前提では作りません。</b>少し直して自分の言葉にする方が、必ず反応が良くなります。'},
+  {n:'学習', c:'var(--green)', t:'出した結果を、また材料に戻す',
+   d:'実際に投稿したものが<b>どれだけ反応をもらい、問い合わせにつながったか</b>を記録して、次の提案の材料にします。<br>→ 使えば使うほど、当たる案が増えていきます。最初の1〜2か月は精度が粗いのが普通です。'}
+];
+(function(){
+  var w=document.getElementById('aiHow'); if(!w) return;
+  w.innerHTML=AIHOW.map(function(x){
+    return '<div style="display:flex;gap:12px;border:1px solid var(--line);border-left:4px solid '+x.c+';border-radius:13px;padding:12px 15px;margin-bottom:9px;background:#fff">'
+      +'<div style="font-size:11px;font-weight:900;color:#fff;background:'+x.c+';border-radius:11px;padding:3px 9px;height:fit-content;white-space:nowrap;flex-shrink:0">'+x.n+'</div>'
+      +'<div><div style="font-weight:800;font-size:13.5px;margin-bottom:4px">'+x.t+'</div>'
+      +'<div style="font-size:12.5px;color:#5a4f63;line-height:1.95">'+x.d+'</div></div></div>';
+  }).join('');
 })();
 
 /* AIコンテンツ提案 */
