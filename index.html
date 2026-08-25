@@ -157,6 +157,7 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
     <div class="tab" data-pane="ad">📣 広告・マーケティング</div>
     <div class="tab" data-pane="ai">✨ AIコンテンツ提案</div>
     <div class="tab tab-ref" data-pane="omiai">💞 お見合い分析（IBJ・参考）</div>
+    <div class="tab" data-pane="real" style="background:#f3f0fb;border-color:#e2d8f5;color:#7d54c4">📈 現実的な話</div>
     <div class="tab" data-pane="step" style="background:#eef7f1;border-color:#cfe7d8;color:#2f8a63">🚀 はじめ方</div>
     <div class="tab" data-pane="help" style="background:#fff8ec;border-color:#f0dcc0;color:#a97e33">📘 使い方・用語</div>
   </div>
@@ -432,6 +433,41 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
       </div>
       <div id="aiList"></div>
       <div class="hint">💡 実際にはワンクリックで、Instagramのキャプション・YouTubeの企画・ブログの下書きまで自動生成します（<b>スマイルリンクさんの発信トーンに合わせて</b>学習します）。</div>
+    </div>
+  </div>
+
+  <!-- 現実的な話 -->
+  <div class="pane" id="pane-real">
+    <div class="guide"><div class="g-ttl">📈 きれいごと抜きで、どこまで見込めるか</div>
+    道具の話の前に、<b>この商売でオンライン集客がどこまで効くのか</b>を正直に整理しました。<br>
+    良いことだけ並べても意味がないので、<b>難しいところも書いています。</b></div>
+
+    <div class="sec">
+      <h2>🎯 どう戦うか（集客の考え方）</h2>
+      <div class="h-note">大手と同じ戦い方をしない、が前提です。</div>
+      <div id="strategy"></div>
+    </div>
+
+    <div class="sec" style="background:linear-gradient(160deg,#fff,#f7f2fb);border-color:#eee3f5">
+      <h2>📊 いまの段階で、どのくらい見込めるか</h2>
+      <div class="h-note">「何人集まりますか」への正直な答えです。※すべて<b>目安</b>で、実際の数字は3か月ほど回してみないと分かりません。</div>
+      <div id="realStage"></div>
+      <div class="hint">💡 結婚相談所は<b>1件あたりの金額が大きい</b>ので、<b>月2〜3名のご入会</b>があれば少人数制のサロンは成り立ちます。何百件も集める商売ではありません。だからこの画面も「たくさん集める」ではなく<b>「取りこぼさない・合う人を見つける」</b>に振っています。</div>
+    </div>
+
+    <div class="sec">
+      <h2>⚖️ 有利なところ / 難しいところ</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px">
+        <div style="background:linear-gradient(160deg,#fff,#e9f7f0);border:1px solid #cfe7d8;border-radius:14px;padding:14px 16px">
+          <div style="font-size:12px;font-weight:800;color:var(--green);margin-bottom:7px">◎ 有利なところ</div>
+          <div id="proList" style="font-size:12.5px;color:#5a4f63;line-height:2"></div>
+        </div>
+        <div style="background:linear-gradient(160deg,#fff,#fdeef3);border:1px solid #f6dbe6;border-radius:14px;padding:14px 16px">
+          <div style="font-size:12px;font-weight:800;color:var(--rose-deep);margin-bottom:7px">△ 難しいところ</div>
+          <div id="conList" style="font-size:12.5px;color:#5a4f63;line-height:2"></div>
+        </div>
+      </div>
+      <div class="hint">⚠️ いちばん大事なこと：<b>仕組みがあっても、発信の量が少なければ流れてくる水がありません。</b>いまは「入口を増やす時期」で、この画面は<b>増やした入口のうち、どれが効いたかを教える</b>役割です。順番を逆にしない方が結局は早いです。</div>
     </div>
   </div>
 
@@ -984,6 +1020,77 @@ function genMemFollow(){
   mfShown+=2;
 }
 genMemFollow();
+
+/* ===== 集客戦略 ===== */
+var STRATEGY=[
+  {n:'01', t:'大手と同じ土俵で戦わない', c:'var(--rose)',
+   b:'「結婚相談所」というキーワードの広告は、大手が予算で押さえていて単価が高くなりがちです。<b>そこで正面から張り合うと、費用だけが増えて疲れます。</b>',
+   d:'→ 広告は「中野」「40代」など<b>絞ったところ</b>だけ。真ん中は取りに行かない。'},
+  {n:'02', t:'「数」より「合う人」を増やす', c:'var(--gold)',
+   b:'結婚相談所は1件あたりの金額が大きい業種です。<b>月に2〜3名のご入会で、少人数制のサロンは成り立ちます。</b>何百件も集める必要はありません。',
+   d:'→ 問い合わせを100件にするより、<b>相談まで進む割合</b>を上げる方がずっと安くつきます。'},
+  {n:'03', t:'いちばんの強みは「人」', c:'var(--purple)',
+   b:'<b>40代でご自身が婚活・成婚された仲人</b>で、少人数制。これは大手には真似できません。実際、数字でも<b>ご紹介67%・YouTube50%</b>と、<b>人柄を見てから来た方</b>の入会率が突出しています。',
+   d:'→ 発信は「サービスの説明」より<b>自分を出す</b>方が効きます。経験そのものが最強の素材です。'},
+  {n:'04', t:'オンライン相談＝商圏は全国', c:'var(--blue)',
+   b:'対面は中野近郊だけですが、<b>オンライン相談は全国が相手</b>です。いまオンラインのみの方は入会0ですが、これは「オンラインがダメ」ではなく<b>オンラインの方向けの案内が無い</b>だけの可能性が高いです。',
+   d:'→ 「遠方の方へ」のページと流れを1つ作るだけで、商圏が一気に広がります。'},
+  {n:'05', t:'お金をかける順番', c:'var(--green)',
+   b:'① 発信を続ける（無料）→ ② 来た問い合わせを取りこぼさない（無料）→ ③ 効いた発信に時間を寄せる（無料）→ <b>④ 最後に広告</b>。',
+   d:'→ ①〜③が回っていない状態で広告を出すと、<b>集めた人がそのまま抜けていきます</b>。'}
+];
+(function(){
+  var w=document.getElementById('strategy'); if(!w) return;
+  w.innerHTML=STRATEGY.map(function(x){
+    return '<div style="display:flex;gap:13px;border:1px solid var(--line);border-left:4px solid '+x.c+';border-radius:13px;padding:13px 16px;margin-bottom:10px;background:#fff">'
+      +'<div style="font-size:17px;font-weight:900;color:'+x.c+';flex-shrink:0;min-width:26px">'+x.n+'</div>'
+      +'<div><div style="font-weight:800;font-size:14px;margin-bottom:5px">'+x.t+'</div>'
+      +'<div style="font-size:12.5px;color:#5a4f63;line-height:1.95">'+x.b+'</div>'
+      +'<div style="font-size:12.5px;color:'+x.c+';font-weight:700;margin-top:6px">'+x.d+'</div></div></div>';
+  }).join('');
+})();
+
+/* ===== 現実的な話 ===== */
+var STAGES=[
+  {lab:'いま（発信を始めたばかり）', c:'#c94574', w:22,
+   t:'問い合わせは<b>月0〜2件</b>が普通です。フォロワーが少ないうちは、見てくれる人自体が少ないので当然です。',
+   d:'この時期にやること＝<b>発信を止めないこと</b>。仕組みより先に、入口を増やす時期です。'},
+  {lab:'3〜6か月 続けたころ', c:'#d9a441', w:52,
+   t:'発信が溜まって検索にも出はじめ、<b>月3〜8件</b>の問い合わせが見えてきます。ここから「どの発信が効いたか」の判断ができるようになります。',
+   d:'この時期にやること＝<b>取りこぼさない</b>。30分以内に返す仕組みが効いてくるのはここからです。'},
+  {lab:'6か月〜1年', c:'#4f8fd6', w:76,
+   t:'ご入会された方からの<b>ご紹介</b>が回り始めます。ここが本命です（サンプルでもご紹介の入会率は67%で1位・費用0円）。',
+   d:'この時期にやること＝<b>効いた発信に寄せる</b>。当たった型を繰り返します。'},
+  {lab:'その後（広告を足すなら）', c:'#3fb489', w:100,
+   t:'受け皿ができてから、<b>月¥1〜2万</b>の少額で広告をテストします。効いた1本だけ残します。',
+   d:'いきなり広告から始めると、<b>集めた人がそのまま抜けます</b>。順番が逆だと費用だけ増えます。'}
+];
+(function(){
+  var w=document.getElementById('realStage'); if(!w) return;
+  w.innerHTML=STAGES.map(function(x){
+    return '<div style="margin-bottom:12px">'
+      +'<div style="display:flex;align-items:center;gap:10px;margin-bottom:5px">'
+        +'<div style="font-weight:800;font-size:13.5px;color:'+x.c+'">'+x.lab+'</div></div>'
+      +'<div style="background:#f4eef1;border-radius:9px;height:9px;overflow:hidden;margin-bottom:7px"><div style="height:100%;width:'+x.w+'%;background:'+x.c+';border-radius:9px"></div></div>'
+      +'<div style="font-size:12.5px;color:#5a4f63;line-height:1.95">'+x.t+'</div>'
+      +'<div style="font-size:12.5px;color:'+x.c+';font-weight:700;margin-top:4px">'+x.d+'</div></div>';
+  }).join('');
+
+  document.getElementById('proList').innerHTML=[
+    '・<b>1件あたりの金額が大きい</b>：月2〜3名のご入会で成り立つ。大量集客が要らない',
+    '・<b>オンライン相談で商圏が全国</b>：地域サロンなのに相手は日本中',
+    '・<b>「人」で選ばれる商売</b>：40代でご自身が成婚された経験は、大手が真似できない',
+    '・<b>ご紹介が効く</b>：費用0円で、いちばん濃い方が来る',
+    '・<b>発信の素材が尽きない</b>：日々の相談そのものがネタになる'
+  ].join('<br>');
+  document.getElementById('conList').innerHTML=[
+    '・<b>広告の単価が高い</b>：「結婚相談所」は大手が予算で押さえていて、正面勝負は不利',
+    '・<b>結果が出るまで時間がかかる</b>：発信は3〜6か月の積み上げが要る',
+    '・<b>いま入口が少ない</b>：見てくれる人自体が少ないので、まずは母数づくり',
+    '・<b>1人で回している</b>：返信が遅れると、そのまま入会に響く（30分以内38% / 翌日以降0%）',
+    '・<b>TikTokなど新しい場所は年齢層が読めない</b>：お金を使う前に無料で試す'
+  ].join('<br>');
+})();
 
 /* ===== はじめ方（導入ステップ） ===== */
 var STEP_NOW=[
