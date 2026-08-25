@@ -387,6 +387,18 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
       <div class="hint">💡 先生にお願いしたいのは<b>②のカードを動かすこと</b>だけです。①と③は自動で回ります。</div>
     </div>
 
+    <div class="sec" style="background:linear-gradient(160deg,#fff,#eef6f1);border-color:#dcefe4">
+      <h2>🤖 どこまで自動でやってくれるのか</h2>
+      <div class="h-note">「先生が毎回入力する」なら意味がありません。<b>どの数字が勝手に入って、どこだけ手を動かすのか</b>を全部書きます。</div>
+      <div style="overflow-x:auto">
+      <table class="wtbl">
+        <thead><tr><th>この数字</th><th>どうやって入るか</th><th>自動度</th></tr></thead>
+        <tbody id="autoBody"></tbody>
+      </table>
+      </div>
+      <div class="hint">💡 まとめると、先生が手を動かすのは <b>「相談しました」「ご入会されました」を1タップ</b>だけ。あとは勝手に埋まります。（そのタップさえ、ご入金メールを合図に自動化できます）</div>
+    </div>
+
     <div class="sec">
       <h2>🛠 実現できること一覧（正直版）</h2>
       <div class="h-note">「できます」だけ並べても意味がないので、<b>準備が要るもの・確認が必要なもの</b>も書いています。</div>
@@ -740,6 +752,31 @@ function genFollow(){
 genFollow();
 
 /* ===== 使い方・用語 ===== */
+var AUTOS=[
+  ['問い合わせ 件数','先生のメール受信箱を見張って、問い合わせメールを自動で読み取る','🤖 完全自動'],
+  ['LINEからの問い合わせ','LINE公式アカウントの正式な連携（API）。届いた<b>その瞬間</b>にカードになる','🤖 完全自動'],
+  ['どこから来たか（流入元）','リンクに付けた印（UTM）とメール本文から自動判別','🤖 完全自動'],
+  ['無料相談の予約','予約フォームの確認メールを自動で読み取る','🤖 完全自動'],
+  ['広告費・表示回数・クリック','Meta / LINE / Google の広告アカウントから毎日自動取得','🤖 完全自動'],
+  ['投稿の反応（リールの再生数など）','Instagram / Facebook の正式な連携から自動取得','🤖 完全自動'],
+  ['返信スピード','届いた時刻と、先生が返した時刻の差を自動計算','🤖 完全自動'],
+  ['入会しやすさスコア','上の情報から自動で計算。問い合わせが来た瞬間に付く','🤖 完全自動'],
+  ['AIの発信案・広告案','たまったデータから自動生成。ボタンを押すだけ','🤖 完全自動'],
+  ['「相談しました」','実際にお会いしたかは機械には分かりません → <b>カードを1つ動かす</b>','✍️ 1タップ'],
+  ['「ご入会されました」','同上 → <b>カードを1つ動かす</b>（ご入金メールを合図に自動化も可能）','✍️ 1タップ'],
+  ['お電話での問い合わせ','メールが来ないため検知できません → ワンタップで1件追加','✍️ 1タップ']
+];
+(function(){
+  var tb=document.getElementById('autoBody'); if(!tb) return;
+  tb.innerHTML=AUTOS.map(function(r){
+    var auto=r[2].indexOf('完全')>=0;
+    var c=auto?'#3fb489':'#d9a441', bg=auto?'#e6f6ef':'#fdf3e0';
+    return '<tr><td style="color:var(--ink)">'+r[0]+'</td><td style="color:#5a4f63;font-size:12.5px">'+r[1]+'</td>'
+      +'<td style="white-space:nowrap"><span class="conv-pill" style="color:'+c+';background:'+bg+';font-size:12px">'+r[2]+'</span></td></tr>';
+  }).join('');
+})();
+
+
 var FEAS=[
   ['メールで来た問い合わせを自動でカード化','🟢','メールの転送設定だけ。手入力は不要になります'],
   ['LINEの問い合わせを自動で取り込む','🟢','LINE公式アカウント（無料枠あり）＋API連携。先生の窓口がLINEなので相性が最良です'],
