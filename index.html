@@ -520,6 +520,13 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
       </div>
     </div>
 
+    <div class="sec" style="background:linear-gradient(160deg,#fff,#eef7f1);border-color:#cfe7d8">
+      <h2>🗓 使い方（毎日・毎週・毎月）</h2>
+      <div class="h-note">タブが多く見えますが、<b>毎日見るのは2つだけ</b>です。残りは週1回・月1回で十分です。</div>
+      <div id="routine"></div>
+      <div class="hint">💡 忙しい日は<b>「毎朝の3分」だけ</b>で大丈夫です。それだけでも、返事が遅れて機会を逃すことは無くなります。<br>迷ったときの順番 → <b>📊ダッシュボード（今どうなっている？）→ 🧭パイプライン（今日は誰に返す？）</b>。この2つだけ覚えておけば十分です。</div>
+    </div>
+
     <div class="sec">
       <h2>🧭 この画面が受け持つ範囲</h2>
       <div class="h-note">IBJのシステムと<b>役割を分けて</b>使います。重なるところを作らないのが大事です。</div>
@@ -1158,6 +1165,41 @@ var ASKS=[
 
   document.getElementById('stepAsk').innerHTML=ASKS.map(function(a){
     return '<div class="qa" style="border-color:#f3e4d3"><div class="q">'+a[0]+'</div><div class="a">'+a[1]+'</div></div>';
+  }).join('');
+})();
+
+/* ===== 使い方ルーティン ===== */
+var ROUTINE=[
+  {when:'毎朝 3分', c:'var(--rose)', tabs:'🧭 パイプライン ／ 👤 会員管理',
+   items:['<b>返事をまだしていない方</b>がいないか見る（左端に溜まっている人）',
+          '会員一覧の<b>🟡（2週間 動きなし）</b>に、一言だけ送る',
+          '新しい問い合わせは<b>スコアが高い方から</b>返す'],
+   why:'30分以内に返した方の入会率は<b>38%</b>、翌日以降は<b>0%</b>。ここが一番お金になる3分です。'},
+  {when:'週に1回 10分', c:'var(--gold)', tabs:'📊 ダッシュボード ／ 📥 流入元分析 ／ ✨ AIコンテンツ提案',
+   items:['ファネルを見て、<b>どこで人が減っているか</b>を確認',
+          '流入元の<b>「相談」の列</b>を見る（問い合わせは来るのに会えていないチャネルはないか）',
+          'AIの発信案を出して、<b>今週出すものを3つ決める</b>'],
+   why:'毎日見ても数字はほとんど動きません。<b>週1回</b>がちょうどいい間隔です。'},
+  {when:'月に1回 20分', c:'var(--blue)', tabs:'📣 広告 ／ 🎯 入会しやすい人',
+   items:['広告の<b>獲得単価（CPA）</b>を見て、効いていないものを止める',
+          '「入会しやすい人」の<b>人物像が変わっていないか</b>確認',
+          'LINE広告を出している場合は、管理画面の<b>CSVを取り込む</b>（1〜2分）'],
+   why:'広告と傾向は1か月単位でないと判断できません。<b>短期で判断すると誤ります。</b>'},
+  {when:'ご入会が決まったとき', c:'var(--green)', tabs:'🧭 パイプライン → 👤 会員管理',
+   items:['カードを「ご入会」に動かす（<b>これだけ</b>）',
+          'そのまま<b>会員カルテ</b>になるので、入力し直しは不要',
+          '面談のたびに<b>1〜2行だけ</b>メモを残す'],
+   why:'あとで「この方、何を悩んでいたっけ」を思い出せます。1人で回している以上、記憶に頼らない方が確実です。'}
+];
+(function(){
+  var w=document.getElementById('routine'); if(!w) return;
+  w.innerHTML=ROUTINE.map(function(r){
+    return '<div style="border:1px solid var(--line);border-left:4px solid '+r.c+';border-radius:13px;padding:13px 16px;margin-bottom:10px;background:#fff">'
+      +'<div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:7px">'
+        +'<div style="font-weight:900;font-size:14px;color:'+r.c+'">'+r.when+'</div>'
+        +'<div style="font-size:11.5px;color:var(--sub);font-weight:700">見るタブ：'+r.tabs+'</div></div>'
+      +'<div style="font-size:12.5px;color:#5a4f63;line-height:2">'+r.items.map(function(x){return '・'+x;}).join('<br>')+'</div>'
+      +'<div style="font-size:11.5px;color:var(--sub);margin-top:7px;padding-top:7px;border-top:1px dashed var(--line)">なぜ？ '+r.why+'</div></div>';
   }).join('');
 })();
 
