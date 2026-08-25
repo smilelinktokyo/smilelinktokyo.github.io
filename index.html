@@ -24,6 +24,7 @@ header .sub{font-size:12px;color:var(--sub);}
 .tabbar{display:flex;gap:6px;flex-wrap:wrap;margin:16px 0 20px;}
 .tab{background:#fff;border:1px solid var(--line);color:var(--sub);padding:8px 16px;border-radius:22px;font-size:13px;font-weight:700;cursor:pointer;transition:.15s;}
 .tab:hover{border-color:var(--rose);color:var(--rose);}
+.tab-ref{opacity:.72;}
 .tab.on{background:var(--rose);border-color:var(--rose);color:#fff;box-shadow:0 3px 12px -4px var(--rose);}
 
 /* KPI */
@@ -113,11 +114,12 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
 
   <div class="tabbar">
     <div class="tab on" data-pane="dash">📊 ダッシュボード</div>
-    <div class="tab" data-pane="omiai">💞 お見合い分析（IBJ）</div>
     <div class="tab" data-pane="pipe">🧭 パイプライン</div>
     <div class="tab" data-pane="src">📥 流入元分析</div>
+    <div class="tab" data-pane="seg">🎯 入会しやすい人</div>
     <div class="tab" data-pane="ad">📣 広告・マーケティング</div>
     <div class="tab" data-pane="ai">✨ AIコンテンツ提案</div>
+    <div class="tab tab-ref" data-pane="omiai">💞 お見合い分析（IBJ・参考）</div>
   </div>
 
   <!-- ダッシュボード -->
@@ -151,6 +153,10 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
 
   <!-- お見合い分析（IBJ お見合いアナリティクス） -->
   <div class="pane" id="pane-omiai">
+    <div class="sec" style="background:#fbf7f9;border-style:dashed">
+      <h2>💞 こちらは「参考・将来用」です</h2>
+      <div class="h-note" style="margin:0">先生のご要望は<b>集客の仕組み化</b>とうかがいましたので、こちらは<b>今すぐ作るものではありません</b>。IBJ「お見合いアナリティクス」の数字を後から足したくなった時に、こういう形にできます、という見本として置いています。</div>
+    </div>
     <div class="kpis">
       <div class="kpi hl"><div class="k-lab">活動中の会員</div><div class="k-num">18</div><div class="k-sub">今月 <b>+3</b> 名</div></div>
       <div class="kpi"><div class="k-lab">お見合い成立</div><div class="k-num">18</div><div class="k-sub">今月・全会員合計</div></div>
@@ -243,6 +249,54 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
       <div class="src-row head"><div>流入元</div><div>問い合わせ数</div><div class="num">問合</div><div class="num">入会</div><div class="num">入会率</div></div>
       <div id="srcFull"></div>
       <div class="hint">💡 サンプル：Instagramは問い合わせが一番多いが、<b>YouTubeは入会率が2倍</b>。動画に力を入れると効率が良い、という判断ができます。</div>
+    </div>
+  </div>
+
+  <!-- 入会しやすい人 -->
+  <div class="pane" id="pane-seg">
+    <div class="kpis">
+      <div class="kpi hl"><div class="k-lab">全体の入会率</div><div class="k-num">20.8%</div><div class="k-sub">問い合わせ → 入会</div></div>
+      <div class="kpi"><div class="k-lab">いちばん入会しやすい層</div><div class="k-num" style="font-size:19px">YouTube×30代後半</div><div class="k-sub">入会率 <b>50%</b></div></div>
+      <div class="kpi"><div class="k-lab">30分以内に返信</div><div class="k-num">38%</div><div class="k-sub">入会率（全体の約2倍）</div></div>
+      <div class="kpi"><div class="k-lab">24時間以上たった返信</div><div class="k-num" style="color:var(--rose-deep)">6%</div><div class="k-sub">ほぼ入会に至らない</div></div>
+      <div class="kpi"><div class="k-lab">今週の要優先フォロー</div><div class="k-num">3</div><div class="k-sub">スコアが高い問い合わせ</div></div>
+    </div>
+
+    <div class="sec">
+      <h2>🎯 どんな人が入会につながりやすいか</h2>
+      <div class="h-note">過去に<b>入会された方</b>と<b>入会に至らなかった方</b>を自動で見比べて、「入会しやすい条件」を洗い出します。先生が集計する必要はありません。</div>
+      <div id="segWrap"></div>
+      <div class="hint">💡 読み方：右の「入会率」が高いほど、その条件の方は入会につながりやすいということ。<b>件数（母数）が少ないうちは参考値</b>で、データが貯まるほど精度が上がります。</div>
+    </div>
+
+    <div class="sec">
+      <h2>🧑‍🤝‍🧑 いちばん入会しやすい人物像（AIまとめ）</h2>
+      <div class="h-note">上の数字を組み合わせて、AIが「理想のお客様像」を1枚にまとめます。発信も広告も、この人に向けて作ると当たりやすくなります。</div>
+      <div class="ai-card">
+        <div class="a-type">ペルソナ</div>
+        <div class="a-ttl">「30代後半・都内在住・YouTubeで知って、具体的な質問をくれる女性」</div>
+        <div class="a-body">・<b>年代</b>：35〜39歳（入会率40%／20代前半は0%）
+・<b>エリア</b>：都内・電車で30分圏（来店のハードルが低い）
+・<b>知ったきっかけ</b>：YouTube・ご紹介（＝人柄を見てから来ている）
+・<b>問い合わせ文</b>：費用・期間・流れなど<b>具体的な質問がある</b>（入会率46%／「とりあえず資料が欲しい」は9%）
+・<b>動き</b>：問い合わせから<b>3日以内</b>に無料相談まで進んでいる</div>
+        <div class="a-why">根拠：直近の入会者5名のうち4名がこの条件に2つ以上あてはまっています。逆に「深夜の一言問い合わせ・返信が翌々日」は入会0でした。</div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>⭐ 入会しやすさスコア（新しい問い合わせに自動でつく）</h2>
+      <div class="h-note">問い合わせがメールで届いた瞬間に、上の条件と照らして<b>0〜100点</b>をつけます。点数が高い方から先に対応すれば、同じ時間で入会が増えます。</div>
+      <div id="scoreWrap"></div>
+      <div class="hint">💡 「全員に同じ対応」ではなく<b>順番を変えるだけ</b>で入会率は変わります。スコアが低い方を切るのではなく、<b>先にやる人を決める</b>ための道具です。</div>
+    </div>
+
+    <div class="sec">
+      <div class="ai-head">
+        <div><h2 style="margin:0">📣 じゃあ、何を発信すればいい？</h2><div class="h-note" style="margin:2px 0 0">「入会しやすい人」に向けた発信案を、AIがそのまま作ります。（→ ✨AIコンテンツ提案 タブと連動）</div></div>
+        <button class="ai-btn" onclick="genSegPost()">🎯 この層に刺さる発信を作る</button>
+      </div>
+      <div id="segPost"></div>
     </div>
   </div>
 
@@ -429,6 +483,96 @@ function genAd(){
   adShown+=3;
 }
 genAd();
+
+/* ===== 入会しやすい人（セグメント分析） ===== */
+var SEG_GROUPS=[
+  {g:'年代', rows:[
+    {n:'20代前半', inq:5, join:0}, {n:'20代後半', inq:6, join:1},
+    {n:'30代前半', inq:5, join:1}, {n:'30代後半', inq:5, join:2}, {n:'40代〜', inq:3, join:1}]},
+  {g:'お住まい', rows:[
+    {n:'都内（30分圏）', inq:13, join:4}, {n:'都外・遠方', inq:11, join:1}]},
+  {g:'知ったきっかけ', rows:[
+    {n:'YouTube', inq:4, join:2}, {n:'ご紹介', inq:3, join:2}, {n:'Instagram', inq:9, join:2},
+    {n:'IBJブログ', inq:3, join:1}, {n:'Google検索', inq:5, join:0}]},
+  {g:'問い合わせの内容', rows:[
+    {n:'具体的な質問あり（費用・期間・流れ）', inq:11, join:5},
+    {n:'「まずは資料を」だけ', inq:8, join:0},
+    {n:'一言のみ・深夜', inq:5, join:0}]},
+  {g:'こちらの返信スピード', rows:[
+    {n:'30分以内', inq:8, join:3}, {n:'当日中', inq:9, join:2}, {n:'翌日以降', inq:7, join:0}]}
+];
+function segPct(a,b){ return b?Math.round(a/b*100):0; }
+function segColor(r){ return r>=35?'#3fb489':(r>=18?'#d9a441':'#c94574'); }
+(function(){
+  var w=document.getElementById('segWrap'); if(!w) return;
+  var h='';
+  SEG_GROUPS.forEach(function(G){
+    h+='<div style="margin:16px 0 6px;font-size:13px;font-weight:800;color:var(--rose-deep)">'+G.g+'</div>';
+    h+='<div class="src-row head"><div>区分</div><div>入会率</div><div class="num">問合</div><div class="num">入会</div><div class="num">率</div></div>';
+    G.rows.forEach(function(r){
+      var p=segPct(r.join,r.inq), c=segColor(p);
+      h+='<div class="src-row"><div class="src-name"><span class="src-dot" style="background:'+c+'"></span>'+r.n+'</div>'
+        +'<div class="src-bar-wrap"><div class="src-bar" style="width:'+Math.max(3,p)+'%;background:'+c+'"></div></div>'
+        +'<div class="num">'+r.inq+'</div><div class="num">'+r.join+'</div>'
+        +'<div><span class="conv-pill" style="color:'+c+';background:'+c+'1c">'+p+'%</span></div></div>';
+    });
+  });
+  w.innerHTML=h;
+})();
+
+/* 入会しやすさスコア */
+var SCORES=[
+  {ini:'K.M さん', src:'YouTube', age:'30代後半', area:'新宿区', memo:'費用と期間、日韓の流れを具体的に質問。平日夜に問い合わせ。', sc:88,
+   plus:['YouTube経由（入会率50%）','30代後半（40%）','都内（31%）','具体的な質問あり（46%）'], minus:[], act:'今日中に返信 → 今週末の無料相談枠を2つ提示'},
+  {ini:'T.A さん', src:'Instagram', age:'20代後半', area:'埼玉県', memo:'「まずは資料をお願いします」のみ。', sc:34,
+   plus:['Instagram経由（22%）'], minus:['「資料だけ」の問い合わせ（9%）','都外・遠方（9%）'], act:'資料＋「オンライン相談もできます」を添えて距離のハードルを外す'},
+  {ini:'S.Y さん', src:'ご紹介', age:'30代前半', area:'渋谷区', memo:'ご入会者からのご紹介。すでに雰囲気を聞いている。', sc:92,
+   plus:['ご紹介（入会率67%）','都内（31%）','30代前半（20%）'], minus:[], act:'紹介者の名前を出して安心感を。相談日を先に押さえる'}
+];
+(function(){
+  var w=document.getElementById('scoreWrap'); if(!w) return;
+  var h='';
+  SCORES.slice().sort(function(a,b){return b.sc-a.sc;}).forEach(function(m){
+    var c = m.sc>=70?'#3fb489':(m.sc>=45?'#d9a441':'#c94574');
+    var lab= m.sc>=70?'優先':(m.sc>=45?'普通':'ゆっくり');
+    h+='<div style="border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px;background:linear-gradient(160deg,#fff,'+c+'0d)">'
+      +'<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">'
+        +'<div style="width:54px;height:54px;border-radius:50%;background:'+c+';color:#fff;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:900;flex-shrink:0">'+m.sc+'</div>'
+        +'<div style="flex:1;min-width:180px"><div style="font-weight:800;font-size:14px">'+m.ini+' <span style="font-size:11px;color:var(--sub);font-weight:700">'+m.age+'・'+m.area+'・'+m.src+'</span></div>'
+        +'<div style="font-size:12px;color:#5a4f63;margin-top:2px">'+m.memo+'</div></div>'
+        +'<span class="conv-pill" style="color:'+c+';background:'+c+'1c;font-size:12px">'+lab+'</span></div>'
+      +'<div style="margin-top:10px;font-size:12px;line-height:1.9">'
+        +m.plus.map(function(x){return '<span class="dg" style="color:#3fb489;background:#e6f6ef">＋ '+x+'</span>';}).join('')
+        +m.minus.map(function(x){return '<span class="dg" style="color:#c94574;background:#fbe7ef">− '+x+'</span>';}).join('')
+      +'</div>'
+      +'<div style="margin-top:8px;font-size:12px;color:#5a4f63;border-top:1px dashed var(--line);padding-top:8px">🎬 <b>おすすめの動き</b>：'+m.act+'</div>'
+      +'</div>';
+  });
+  w.innerHTML=h;
+})();
+
+/* この層に刺さる発信 */
+var SEG_POST=[
+  {type:'YouTube 企画', ttl:'「35歳から始める日韓婚活、費用と期間ぜんぶ話します」', body:'入会率が高いのは「費用・期間を具体的に聞いてくる30代後半」。\n＝ 知りたいことに先に全部答える動画が、いちばん相談につながります。\n・実際の金額を画面に出す（ぼかさない）\n・活動期間の中央値、成婚までの流れ\n・最後に「無料相談で個別に見積もります」', why:'具体的な質問をくれた方の入会率は<b>46%</b>、「資料だけ」は<b>9%</b>。<b>先に情報を出すほど濃い問い合わせ</b>が来ます。'},
+  {type:'Instagram 投稿', ttl:'「都内・30代後半の会員さまの活動スケジュール」', body:'平日は仕事、土曜にお見合い1〜2件…という現実的な1週間を図解。\n「忙しくてもできる」を見せると、この層が動きます。', why:'都内（30分圏）の入会率は<b>31%</b>、都外は<b>9%</b>。<b>通える距離</b>の方に的を絞ると効率が上がります。'},
+  {type:'ブログ 記事', ttl:'「ご紹介でご入会された方が、いちばん早く成婚する理由」', body:'紹介の入会率は67%と最強。紹介が増える記事を書く。\n・入会者インタビュー\n・お友だち紹介特典のご案内', why:'ご紹介は入会率<b>67%</b>で全チャネル中1位。<b>広告費0円</b>で最も濃い層が来ます。'},
+  {type:'返信テンプレ改善', ttl:'「30分以内の一次返信」を自動化する', body:'問い合わせメールを検知したら、AIが下書きを用意 → 先生は送信ボタンだけ。\n・お名前、質問内容を反映した文面\n・相談枠を2つ提案（選ぶだけにする）', why:'30分以内に返信した方の入会率は<b>38%</b>、翌日以降は<b>0%</b>。発信より先に<b>ここが効きます</b>。'}
+];
+var segShown=0;
+function genSegPost(){
+  var list=document.getElementById('segPost'); if(!list) return;
+  var batch=SEG_POST.slice(segShown,segShown+2);
+  if(!batch.length){ segShown=0; batch=SEG_POST.slice(0,2); }
+  if(segShown===0) list.innerHTML='';
+  batch.forEach(function(a){
+    var d=document.createElement('div'); d.className='ai-card';
+    d.innerHTML='<div class="a-type">'+a.type+'</div><div class="a-ttl">'+a.ttl+'</div>'
+      +'<div class="a-body">'+a.body+'</div><div class="a-why">なぜこの層に効く？ '+a.why+'</div>';
+    list.appendChild(d);
+  });
+  segShown+=2;
+}
+genSegPost();
 
 /* ===== お見合い分析（IBJ お見合いアナリティクス） ===== */
 var OM_FUNNEL=[
