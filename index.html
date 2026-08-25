@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>婚活サロン 集客ダッシュボード</title>
+<style>
+:root{
+  --bg:#faf7f8; --card:#ffffff; --ink:#2b2431; --sub:#8a7f92; --line:#efe7ec;
+  --rose:#e5648e; --rose-soft:#fbe7ef; --rose-deep:#c94574;
+  --gold:#d9a441; --green:#3fb489; --blue:#4f8fd6; --purple:#9b6dd6;
+  --shadow:0 6px 24px -12px rgba(90,40,70,.28);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,'Hiragino Sans','Yu Gothic',sans-serif;font-size:14px;line-height:1.6;}
+.wrap{max-width:1200px;margin:0 auto;padding:20px 18px 60px;}
+
+/* ヘッダー */
+header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:6px;}
+header .ttl{font-size:20px;font-weight:800;letter-spacing:.3px;}
+header .ttl span{color:var(--rose);}
+header .sub{font-size:12px;color:var(--sub);}
+.badge-demo{background:var(--rose-soft);color:var(--rose-deep);font-size:11px;font-weight:800;padding:4px 11px;border-radius:20px;}
+.tabbar{display:flex;gap:6px;flex-wrap:wrap;margin:16px 0 20px;}
+.tab{background:#fff;border:1px solid var(--line);color:var(--sub);padding:8px 16px;border-radius:22px;font-size:13px;font-weight:700;cursor:pointer;transition:.15s;}
+.tab:hover{border-color:var(--rose);color:var(--rose);}
+.tab.on{background:var(--rose);border-color:var(--rose);color:#fff;box-shadow:0 3px 12px -4px var(--rose);}
+
+/* KPI */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:22px;}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow);}
+.kpi .k-lab{font-size:12px;color:var(--sub);font-weight:700;}
+.kpi .k-num{font-size:28px;font-weight:900;letter-spacing:-.5px;margin-top:4px;}
+.kpi .k-sub{font-size:11px;color:var(--sub);margin-top:2px;}
+.kpi .k-sub b{color:var(--green);} .kpi .k-sub b.dn{color:var(--rose-deep);}
+.kpi.hl{background:linear-gradient(160deg,#fff,var(--rose-soft));border-color:var(--rose-soft);}
+
+.sec{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px;box-shadow:var(--shadow);margin-bottom:20px;}
+.sec h2{font-size:15px;font-weight:800;margin-bottom:4px;display:flex;align-items:center;gap:8px;}
+.sec .h-note{font-size:12px;color:var(--sub);margin-bottom:16px;}
+
+/* ファネル */
+.funnel{display:flex;flex-direction:column;gap:10px;}
+.fn-row{display:flex;align-items:center;gap:14px;}
+.fn-lab{width:130px;font-size:13px;font-weight:700;flex-shrink:0;}
+.fn-bar-wrap{flex:1;background:#f4eef1;border-radius:10px;height:38px;position:relative;overflow:hidden;}
+.fn-bar{height:100%;border-radius:10px;display:flex;align-items:center;padding:0 14px;color:#fff;font-weight:800;font-size:14px;transition:width .6s;}
+.fn-conv{width:70px;text-align:right;font-size:12px;color:var(--sub);font-weight:700;flex-shrink:0;}
+.fn-conv b{color:var(--green);}
+
+/* 流入元 テーブル/バー */
+.src-row{display:grid;grid-template-columns:120px 1fr 60px 60px 64px;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-size:13px;}
+.src-row.head{color:var(--sub);font-weight:700;font-size:11px;border-bottom:2px solid var(--line);}
+.src-name{font-weight:700;display:flex;align-items:center;gap:7px;}
+.src-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.src-bar-wrap{background:#f4eef1;border-radius:6px;height:16px;overflow:hidden;}
+.src-bar{height:100%;border-radius:6px;}
+.src-row .num{text-align:right;font-weight:700;}
+.conv-pill{font-size:11px;font-weight:800;padding:2px 8px;border-radius:12px;text-align:center;}
+
+/* 会員テーブル（お見合い分析） */
+.mtbl{width:100%;border-collapse:collapse;font-size:13px;}
+.mtbl th{text-align:right;color:var(--sub);font-size:11px;font-weight:700;padding:8px 8px;border-bottom:2px solid var(--line);white-space:nowrap;}
+.mtbl th:first-child,.mtbl th:last-child{text-align:left;}
+.mtbl td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap;}
+.mtbl td:first-child,.mtbl td:last-child{text-align:left;}
+.mtbl tr:hover td{background:#fdf6f9;}
+.mem-name{font-weight:800;}
+.rate{font-weight:800;}
+.rate.g{color:var(--green);} .rate.y{color:var(--gold);} .rate.r{color:var(--rose-deep);}
+.dg{display:inline-block;font-size:11px;font-weight:800;padding:2px 9px;border-radius:12px;margin:1px 3px 1px 0;}
+.bneck{background:linear-gradient(165deg,#fff,#fdeef3);border:1px solid #f6dbe6;border-radius:14px;padding:14px 16px;margin-top:14px;}
+.bneck .b-ttl{font-size:13px;font-weight:800;color:var(--rose-deep);margin-bottom:6px;}
+.bneck .b-body{font-size:12px;color:#5a4f63;line-height:1.9;}
+
+/* 広告テーブル */
+.adtbl{width:100%;border-collapse:collapse;font-size:13px;}
+.adtbl th{text-align:left;color:var(--sub);font-size:11px;font-weight:700;padding:8px 10px;border-bottom:2px solid var(--line);}
+.adtbl td{padding:11px 10px;border-bottom:1px solid var(--line);}
+.adtbl .r{text-align:right;font-weight:700;}
+.cpa-good{color:var(--green);font-weight:800;}
+.cpa-bad{color:var(--rose-deep);font-weight:800;}
+.chip{display:inline-block;font-size:11px;font-weight:800;padding:2px 9px;border-radius:12px;}
+
+/* AIコンテンツ */
+.ai-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px;}
+.ai-btn{background:linear-gradient(135deg,var(--purple),#7d54c4);color:#fff;border:none;border-radius:22px;padding:10px 20px;font-size:13px;font-weight:800;cursor:pointer;box-shadow:0 4px 14px -5px var(--purple);}
+.ai-card{background:linear-gradient(165deg,#fff,#f7f2fb);border:1px solid #eee3f5;border-radius:14px;padding:16px 18px;margin-bottom:12px;}
+.ai-card .a-type{font-size:11px;font-weight:800;color:var(--purple);background:#f0e6fb;padding:3px 10px;border-radius:12px;display:inline-block;margin-bottom:8px;}
+.ai-card .a-ttl{font-size:15px;font-weight:800;margin-bottom:6px;}
+.ai-card .a-body{font-size:13px;color:#5a4f63;white-space:pre-wrap;}
+.ai-card .a-why{font-size:11px;color:var(--sub);margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);}
+.ai-card .a-why b{color:var(--rose);}
+
+.pane{display:none;} .pane.on{display:block;}
+.hint{font-size:12px;color:var(--sub);background:#f7f2f5;border-radius:10px;padding:10px 14px;margin-top:6px;}
+footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
+@media(max-width:640px){
+  .src-row{grid-template-columns:90px 1fr 44px 50px;} .src-row .hide-m{display:none;}
+  .fn-lab{width:96px;font-size:12px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="ttl">💍 婚活サロン <span>集客ダッシュボード</span></div>
+      <div class="sub">問い合わせ → 無料相談 → ご入会 まで、集客をまるっと見える化</div>
+    </div>
+    <div class="badge-demo">サンプル画面（構想）</div>
+  </header>
+
+  <div class="tabbar">
+    <div class="tab on" data-pane="dash">📊 ダッシュボード</div>
+    <div class="tab" data-pane="omiai">💞 お見合い分析（IBJ）</div>
+    <div class="tab" data-pane="pipe">🧭 パイプライン</div>
+    <div class="tab" data-pane="src">📥 流入元分析</div>
+    <div class="tab" data-pane="ad">📣 広告・マーケティング</div>
+    <div class="tab" data-pane="ai">✨ AIコンテンツ提案</div>
+  </div>
+
+  <!-- ダッシュボード -->
+  <div class="pane on" id="pane-dash">
+    <div class="kpis">
+      <div class="kpi hl"><div class="k-lab">今月の問い合わせ</div><div class="k-num">24</div><div class="k-sub"><b>+6</b> 先月比</div></div>
+      <div class="kpi"><div class="k-lab">無料相談</div><div class="k-num">12</div><div class="k-sub">予約率 <b>62%</b></div></div>
+      <div class="kpi"><div class="k-lab">ご入会</div><div class="k-num">5</div><div class="k-sub">相談→入会 <b>42%</b></div></div>
+      <div class="kpi"><div class="k-lab">総合転換率</div><div class="k-num">20.8%</div><div class="k-sub">問い合わせ→入会</div></div>
+      <div class="kpi"><div class="k-lab">獲得単価(CPA)</div><div class="k-num">¥18,000</div><div class="k-sub"><b class="dn">-¥4,000</b> 改善</div></div>
+    </div>
+
+    <div class="sec">
+      <h2>🧭 今月のファネル</h2>
+      <div class="h-note">どの段階で離れているかが一目でわかります。「予約は入るのに相談で減る」など、対策ポイントが見えます。</div>
+      <div class="funnel">
+        <div class="fn-row"><div class="fn-lab">問い合わせ</div><div class="fn-bar-wrap"><div class="fn-bar" style="width:100%;background:var(--rose)">24件</div></div><div class="fn-conv">—</div></div>
+        <div class="fn-row"><div class="fn-lab">無料相談 予約</div><div class="fn-bar-wrap"><div class="fn-bar" style="width:62%;background:var(--gold)">15件</div></div><div class="fn-conv"><b>62%</b></div></div>
+        <div class="fn-row"><div class="fn-lab">無料相談 実施</div><div class="fn-bar-wrap"><div class="fn-bar" style="width:50%;background:var(--blue)">12件</div></div><div class="fn-conv"><b>80%</b></div></div>
+        <div class="fn-row"><div class="fn-lab">ご入会</div><div class="fn-bar-wrap"><div class="fn-bar" style="width:21%;background:var(--green)">5件</div></div><div class="fn-conv"><b>42%</b></div></div>
+      </div>
+      <div class="hint">💡 サンプル：予約→相談は80%と高いのに、相談→入会が42%。<b>相談後のフォロー</b>を強化すると入会が伸びる可能性。</div>
+    </div>
+
+    <div class="sec">
+      <h2>📥 流入元 ざっくり</h2>
+      <div class="h-note">お金と時間をどこにかけると「入会」につながるか。件数だけでなく<b>入会率</b>で見るのがコツ。</div>
+      <div id="srcMini"></div>
+    </div>
+  </div>
+
+  <!-- お見合い分析（IBJ お見合いアナリティクス） -->
+  <div class="pane" id="pane-omiai">
+    <div class="kpis">
+      <div class="kpi hl"><div class="k-lab">活動中の会員</div><div class="k-num">18</div><div class="k-sub">今月 <b>+3</b> 名</div></div>
+      <div class="kpi"><div class="k-lab">お見合い成立</div><div class="k-num">18</div><div class="k-sub">今月・全会員合計</div></div>
+      <div class="kpi"><div class="k-lab">申込 → OK率</div><div class="k-num">34%</div><div class="k-sub">業界平均 <b>約30%</b></div></div>
+      <div class="kpi"><div class="k-lab">プレ交際 成立率</div><div class="k-num">61%</div><div class="k-sub">お見合い後</div></div>
+      <div class="kpi"><div class="k-lab">要フォロー会員</div><div class="k-num" style="color:var(--rose-deep)">4</div><div class="k-sub">動きが止まっている方</div></div>
+    </div>
+
+    <div class="sec">
+      <h2>💞 会員の活動ファネル（IBJ お見合いアナリティクス）</h2>
+      <div class="h-note">「検索に出る → 写真を見られる → プロフィールを読まれる → 申し込む → OKをもらう → お見合い → プレ交際」。<b>どこで止まっているか</b>が分かれば、打つ手が変わります。</div>
+      <div class="funnel" id="omFunnel"></div>
+      <div class="bneck">
+        <div class="b-ttl">🔎 いま一番の詰まり：<b>プロフィール写真のクリック（25%）</b></div>
+        <div class="b-body">・検索には<b>1,240回</b>出ているのに、写真をクリックされたのは<b>312回</b>。「見つかってはいるが、選ばれていない」状態です。<br>・ここは<b>写真の差し替え</b>で一番早く数字が動きます（メイン写真＝表情・明るさ・服装）。<br>・逆に「お見合い成立 82%」「プレ交際 61%」は高い＝<b>会ってからは強い</b>サロンです。入口の写真を直すだけで成婚数が伸びます。</div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>👥 会員別の活動状況</h2>
+      <div class="h-note">会員ごとに「どこで止まっているか」を自動で診断します。先生は<b>診断タグが付いた方だけ</b>フォローすれば大丈夫です。</div>
+      <div style="overflow-x:auto">
+      <table class="mtbl">
+        <thead><tr><th>会員</th><th class="hide-m">検索該当</th><th>写真クリック</th><th class="hide-m">プロフ閲覧</th><th>申込</th><th>OK</th><th>お見合い</th><th class="hide-m">プレ交際</th><th>AI診断</th></tr></thead>
+        <tbody id="memBody"></tbody>
+      </table>
+      </div>
+      <div class="hint">💡 サンプル：Y.Sさんは検索該当が多いのに写真クリック率が9% → <b>写真を替えるだけ</b>で申込が倍になる可能性。M.Tさんは申込が2件だけ → <b>申込数を増やす</b>ご提案を。</div>
+    </div>
+
+    <div class="sec">
+      <div class="ai-head">
+        <div><h2 style="margin:0">🤖 AI 会員フォロー提案</h2><div class="h-note" style="margin:2px 0 0">詰まっている段階ごとに、先生がそのまま使える「声かけ・打ち手」を作ります。</div></div>
+        <button class="ai-btn" onclick="genFollow()">💐 フォロー案を作る</button>
+      </div>
+      <div id="followList"></div>
+    </div>
+
+    <div class="sec" style="background:linear-gradient(160deg,#fff,#f2f7fc);border-color:#dde9f5">
+      <h2>🔌 データの取り込み方</h2>
+      <div class="h-note">この数字は IBJ の「<b>お見合いアナリティクス</b>」（別料金オプション）から来ます。手入力は不要です。</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px">
+        <div style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px">
+          <div style="font-size:12px;font-weight:800;color:var(--green);margin-bottom:6px">📥 自動取込</div>
+          <div style="font-size:12px;color:#5a4f63;line-height:1.8">・IBJ からダウンロードした<br>　CSV を置くだけ → 自動集計<br>・会員別・月別に自動で履歴保存<br><span style="color:var(--sub)">→ 先月比・伸び率も自動</span></div>
+        </div>
+        <div style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px">
+          <div style="font-size:12px;font-weight:800;color:var(--blue);margin-bottom:6px">🔔 自動アラート</div>
+          <div style="font-size:12px;color:#5a4f63;line-height:1.8">・2週間 申込0 の会員<br>・写真クリック率が急に落ちた会員<br>・OK率が下がった会員<br><span style="color:var(--sub)">→ LINE / メールでお知らせ</span></div>
+        </div>
+        <div style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px">
+          <div style="font-size:12px;font-weight:800;color:var(--purple);margin-bottom:6px">🔗 集客とつながる</div>
+          <div style="font-size:12px;color:#5a4f63;line-height:1.8">・「入会後に活躍する会員」が<br>　どの流入元から来たかが分かる<br><span style="color:var(--sub)">→ 広告予算をそこへ寄せる</span></div>
+        </div>
+      </div>
+      <div class="hint" style="margin-top:12px">💡 集客（入会まで）と 活動（入会後）を<b>ひとつの画面</b>で。「入会させて終わり」ではなく<b>成婚まで</b>見えるのが強みです。</div>
+    </div>
+  </div>
+
+  <!-- パイプライン -->
+  <div class="pane" id="pane-pipe">
+    <div class="sec" style="background:linear-gradient(160deg,#fff,#eef6f1);border-color:#dcefe4">
+      <h2>📧 メール自動取込</h2>
+      <div class="h-note">メールで届く問い合わせは<b>自動でカード化</b>。手入力は電話・直接DMなど「メールが来ないもの」だけ。</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
+        <div style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px">
+          <div style="font-size:12px;font-weight:800;color:var(--green);margin-bottom:6px">📧 自動（メール連携）</div>
+          <div style="font-size:12px;color:#5a4f63;line-height:1.8">・お問い合わせフォーム<br>・IBJ 問い合わせ通知<br>・無料相談 予約確認<br>・Instagram / Googleフォーム通知<br><span style="color:var(--sub)">→ 流入元も本文から自動判別</span></div>
+        </div>
+        <div style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px">
+          <div style="font-size:12px;font-weight:800;color:var(--gold);margin-bottom:6px">✍️ 手入力（メールが来ないもの）</div>
+          <div style="font-size:12px;color:#5a4f63;line-height:1.8">・電話でのお問い合わせ<br>・直接DM・対面<br>・紹介（口頭）<br><span style="color:var(--sub)">→ ワンタップで1件追加</span></div>
+        </div>
+      </div>
+      <div class="hint" style="margin-top:12px">💡 メール受信箱を見張って、<b>新しい問い合わせを自動でパイプラインに追加</b>します（JS-SHOPの受注メール自動取込と同じ仕組み）。先生は届いたカードを動かすだけ。</div>
+    </div>
+    <div class="sec">
+      <h2>🧭 パイプライン（見込み客の管理）</h2>
+      <div class="h-note">問い合わせが来たら1件ずつカード化。段階が進むごとに動かします。今どこで止まっているかが見えます。<b>📧＝自動取込 / ✍️＝手入力</b></div>
+      <div id="pipeBoard" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;"></div>
+      <div class="hint">💡 実際の画面では、カードをクリックして段階を動かせます（問い合わせ→予約→相談→入会/見送り）。名前はイニシャルで管理。</div>
+    </div>
+  </div>
+
+  <!-- 流入元分析 -->
+  <div class="pane" id="pane-src">
+    <div class="sec">
+      <h2>📥 流入元分析</h2>
+      <div class="h-note">どの発信（Instagram・YouTube・ブログ等）が「問い合わせ」だけでなく「入会」まで運んでくれているか。</div>
+      <div class="src-row head"><div>流入元</div><div>問い合わせ数</div><div class="num">問合</div><div class="num">入会</div><div class="num">入会率</div></div>
+      <div id="srcFull"></div>
+      <div class="hint">💡 サンプル：Instagramは問い合わせが一番多いが、<b>YouTubeは入会率が2倍</b>。動画に力を入れると効率が良い、という判断ができます。</div>
+    </div>
+  </div>
+
+  <!-- 広告・マーケティング -->
+  <div class="pane" id="pane-ad">
+    <div class="sec">
+      <h2>📣 広告・マーケティング管理</h2>
+      <div class="h-note">「どこにいくら使って、何人入会したか」＝ 獲得単価(CPA)。広告を出す前も出した後も、効くところにお金を寄せられます。</div>
+      <table class="adtbl">
+        <thead><tr><th>チャネル / 施策</th><th class="r">費用</th><th class="r">問合</th><th class="r">入会</th><th class="r">獲得単価</th><th>評価</th></tr></thead>
+        <tbody id="adBody"></tbody>
+      </table>
+      <div class="hint">💡 サンプル：Instagram広告はCPAが安く効率◎。IBJブログは費用0で入会も出ていて「持ち出しゼロの資産」。Google広告はCPAが高いので<b>キーワード見直し</b>が必要。</div>
+    </div>
+    <div class="sec">
+      <h2>🎯 おすすめの配分（AI提案）</h2>
+      <div class="h-note">今の数字をもとに「来月どこに寄せると良いか」を提案します。</div>
+      <div class="ai-card">
+        <div class="a-type">配分提案</div>
+        <div class="a-body">・<b>Instagram広告</b>：CPA¥12,000で最も効率的 → 予算を +30%<br>・<b>YouTube</b>：入会率が高い → 投稿本数を週2本に<br>・<b>Google広告</b>：CPA¥42,000と割高 → キーワードを「日韓 結婚」など具体的に絞る<br>・<b>紹介</b>：入会率68%と最強 → 入会者への紹介特典を設計</div>
+        <div class="a-why">根拠：<b>入会率×獲得単価</b>で並べ替え。件数が多い＝良いではなく、<b>入会まで安く運べるか</b>で判断しています。</div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="ai-head">
+        <div><h2 style="margin:0">🤖 AI広告クリエイティブ</h2><div class="h-note" style="margin:2px 0 0">出稿する広告の「見出し・本文・ターゲット・予算」までAIが作ります。効いた広告の傾向を学び、次の案を自動で。</div></div>
+        <button class="ai-btn" onclick="genAd()">🪄 広告案を作る</button>
+      </div>
+      <div id="adCreative"></div>
+      <div class="hint">💡 実際には、承認ボタンを押すと <b>Instagram / Google / YouTube の広告アカウントへ自動出稿</b>し、費用・問い合わせ・入会まで自動で集計します（お金が動くので出稿は必ず承認制）。</div>
+    </div>
+  </div>
+
+  <!-- AIコンテンツ提案 -->
+  <div class="pane" id="pane-ai">
+    <div class="sec">
+      <div class="ai-head">
+        <div><h2 style="margin:0">✨ AIコンテンツ提案</h2><div class="h-note" style="margin:2px 0 0">入会につながった投稿の傾向から、次に出すと良い発信を自動で作ります。選んで、少し直して投稿するだけ。</div></div>
+        <button class="ai-btn" onclick="genMore()">🔮 今週の提案を作る</button>
+      </div>
+      <div id="aiList"></div>
+      <div class="hint">💡 実際にはワンクリックで、Instagramのキャプション・YouTubeの企画・ブログの下書きまで自動生成します（日韓国際結婚に特化）。</div>
+    </div>
+  </div>
+
+  <footer>💍 婚活サロン 集客ダッシュボード — 構想サンプル（数字はすべてダミーです）</footer>
+</div>
+
+<script>
+/* ===== サンプルデータ（すべてダミー） ===== */
+var SRC=[
+  {name:'Instagram', dot:'#e5648e', inq:9, join:2, color:'#e5648e'},
+  {name:'YouTube',   dot:'#e35d4e', inq:4, join:2, color:'#e35d4e'},
+  {name:'Google検索', dot:'#4f8fd6', inq:5, join:0, color:'#4f8fd6'},
+  {name:'IBJブログ',  dot:'#3fb489', inq:3, join:1, color:'#3fb489'},
+  {name:'ご紹介',     dot:'#d9a441', inq:3, join:2, color:'#d9a441'}
+];
+var maxInq=Math.max.apply(null,SRC.map(function(s){return s.inq;}));
+function convColor(r){ return r>=40?'#3fb489':r>=20?'#d9a441':'#c94574'; }
+
+/* 流入元 ミニ（ダッシュボード） */
+(function(){
+  var h='<div class="src-row head"><div>流入元</div><div>件数</div><div class="num hide-m">入会</div><div class="num">入会率</div></div>';
+  SRC.forEach(function(s){
+    var r=s.inq?Math.round(s.join/s.inq*100):0;
+    h+='<div class="src-row"><div class="src-name"><span class="src-dot" style="background:'+s.dot+'"></span>'+s.name+'</div>'
+      +'<div class="src-bar-wrap"><div class="src-bar" style="width:'+(s.inq/maxInq*100)+'%;background:'+s.color+'"></div></div>'
+      +'<div class="num hide-m">'+s.join+'</div>'
+      +'<div class="num"><span class="conv-pill" style="background:'+convColor(r)+'22;color:'+convColor(r)+'">'+r+'%</span></div></div>';
+  });
+  document.getElementById('srcMini').innerHTML=h;
+})();
+
+/* 流入元 フル */
+(function(){
+  var h='';
+  SRC.forEach(function(s){
+    var r=s.inq?Math.round(s.join/s.inq*100):0;
+    h+='<div class="src-row"><div class="src-name"><span class="src-dot" style="background:'+s.dot+'"></span>'+s.name+'</div>'
+      +'<div class="src-bar-wrap"><div class="src-bar" style="width:'+(s.inq/maxInq*100)+'%;background:'+s.color+'"></div></div>'
+      +'<div class="num">'+s.inq+'</div><div class="num">'+s.join+'</div>'
+      +'<div class="num"><span class="conv-pill" style="background:'+convColor(r)+'22;color:'+convColor(r)+'">'+r+'%</span></div></div>';
+  });
+  document.getElementById('srcFull').innerHTML=h;
+})();
+
+/* パイプライン */
+(function(){
+  var cols=[
+    {t:'📩 問い合わせ', c:'#e5648e', cards:[{n:'A.Kさん(32)', s:'Instagram', d:'2日前', a:1},{n:'M.Tさん(29)', s:'YouTube', d:'1日前', a:1},{n:'S.Yさん(35)', s:'電話', d:'今日', a:0}]},
+    {t:'📅 相談予約', c:'#d9a441', cards:[{n:'R.Nさん(31)', s:'ご紹介', d:'相談 8/27', a:0},{n:'K.Hさん(38)', s:'Instagram', d:'相談 8/28', a:1}]},
+    {t:'💬 相談実施', c:'#4f8fd6', cards:[{n:'Y.Sさん(34)', s:'IBJブログ', d:'検討中', a:1}]},
+    {t:'💍 ご入会', c:'#3fb489', cards:[{n:'T.Aさん(33)', s:'YouTube', d:'8/24 入会🎉', a:1},{n:'N.Oさん(30)', s:'ご紹介', d:'8/22 入会🎉', a:0}]}
+  ];
+  var h='';
+  cols.forEach(function(col){
+    h+='<div style="background:#faf5f8;border:1px solid var(--line);border-radius:14px;padding:12px;">'
+      +'<div style="font-weight:800;font-size:13px;margin-bottom:10px;color:'+col.c+'">'+col.t+' <span style="color:var(--sub);font-weight:700">'+col.cards.length+'</span></div>';
+    col.cards.forEach(function(cd){
+      h+='<div style="background:#fff;border:1px solid var(--line);border-left:3px solid '+col.c+';border-radius:10px;padding:10px 12px;margin-bottom:8px;box-shadow:0 2px 8px -6px rgba(90,40,70,.3)">'
+        +'<div style="display:flex;align-items:center;gap:5px"><span style="font-size:10px">'+(cd.a?'📧':'✍️')+'</span><div style="font-weight:800;font-size:13px">'+cd.n+'</div></div>'
+        +'<div style="font-size:11px;color:var(--sub);margin-top:3px">📥 '+cd.s+' ・ '+cd.d+'</div></div>';
+    });
+    h+='</div>';
+  });
+  document.getElementById('pipeBoard').innerHTML=h;
+})();
+
+/* 広告テーブル */
+(function(){
+  var ads=[
+    {ch:'Instagram広告', cost:24000, inq:9, join:2, note:'効率◎', good:true},
+    {ch:'Google広告',    cost:42000, inq:5, join:1, note:'見直し', good:false},
+    {ch:'YouTube(運用)',  cost:0,     inq:4, join:2, note:'資産', good:true},
+    {ch:'IBJブログ',      cost:0,     inq:3, join:1, note:'資産', good:true},
+    {ch:'ご紹介',         cost:0,     inq:3, join:2, note:'最強', good:true}
+  ];
+  var h='';
+  ads.forEach(function(a){
+    var cpa=a.join?Math.round(a.cost/a.join):0;
+    var cpaStr=a.cost===0?'¥0':('¥'+cpa.toLocaleString());
+    var cls=a.cost===0?'cpa-good':(cpa<=20000?'cpa-good':'cpa-bad');
+    var chipC=a.good?'#3fb489':'#c94574';
+    h+='<tr><td style="font-weight:700">'+a.ch+'</td><td class="r">'+(a.cost?'¥'+a.cost.toLocaleString():'¥0')+'</td>'
+      +'<td class="r">'+a.inq+'</td><td class="r">'+a.join+'</td>'
+      +'<td class="r '+cls+'">'+cpaStr+'</td>'
+      +'<td><span class="chip" style="background:'+chipC+'22;color:'+chipC+'">'+a.note+'</span></td></tr>';
+  });
+  document.getElementById('adBody').innerHTML=h;
+})();
+
+/* AIコンテンツ提案 */
+var AI_POOL=[
+  {type:'Instagram 投稿', ttl:'「日韓カップルのリアルな1日」', body:'韓国人男性と日本人女性の休日の過ごし方を、写真4枚＋短文で。\n#日韓カップル #国際結婚 #婚活 をつけて。', why:'Instagram経由の相談者は<b>「生活イメージ」</b>系の投稿から来ています。'},
+  {type:'YouTube 企画', ttl:'「韓国人男性は本当にレディーファースト?」検証', body:'会員さん(顔出しOKの方)へのインタビュー形式。3〜5分。\n冒頭30秒で結論→エピソード→まとめ。', why:'YouTube流入は<b>入会率が高い(50%)</b>。動画で人柄が伝わると成約に近い。'},
+  {type:'ブログ 下書き', ttl:'「問い合わせから入会までの流れ」完全ガイド', body:'無料相談で何を話すか、費用、期間の目安を正直に。\n不安を先に解消する記事は相談予約につながりやすい。', why:'Google検索の人は<b>比較検討中</b>。「流れ・費用」記事が予約の背中を押す。'},
+  {type:'Instagram ストーリーズ', ttl:'「今週の成婚レポート」', body:'成婚された方(許可制)の一言＋サロンの雰囲気。\n「おめでとう」スタンプで反応を取る。', why:'成婚報告は<b>信頼の証明</b>。紹介・DM問い合わせが増える傾向。'},
+  {type:'YouTube ショート', ttl:'「日韓結婚でよくある誤解 3つ」', body:'テンポよく3つ。言葉の壁・家族・ビザ。各15秒。\n最後に「無料相談へ」CTA。', why:'ショートは新規リーチ向き。<b>認知→問い合わせ</b>の入り口を増やす。'}
+];
+var aiShown=0;
+function genMore(){
+  var list=document.getElementById('aiList');
+  var batch=AI_POOL.slice(aiShown,aiShown+3);
+  if(!batch.length){ aiShown=0; batch=AI_POOL.slice(0,3); list.innerHTML=''; }
+  batch.forEach(function(a){
+    var d=document.createElement('div'); d.className='ai-card';
+    d.innerHTML='<div class="a-type">'+a.type+'</div><div class="a-ttl">'+a.ttl+'</div>'
+      +'<div class="a-body">'+a.body+'</div><div class="a-why">なぜ効く？ '+a.why+'</div>';
+    list.insertBefore(d, list.firstChild);
+  });
+  aiShown+=3;
+}
+genMore();
+
+/* AI広告クリエイティブ */
+var AD_POOL=[
+  {plat:'Instagram広告', pc:'#e5648e', head:'「言葉の壁、実はほとんど気になりません」', body:'日韓カップルのリアルな日常を4枚の写真で。\n通訳サポート・文化理解プログラムありで安心。\n▶ まずは無料相談から', target:'関東 / 28〜38歳 女性 / 韓国文化・K-POP・海外旅行に関心', budget:'¥30,000/月', cpa:'¥12,000', why:'Instagram経由は<b>「生活イメージ」</b>で相談化。写真中心の訴求が効く。'},
+  {plat:'Google広告', pc:'#4f8fd6', head:'日韓国際結婚の相談所｜通訳つきで安心', body:'「日韓 結婚相談所」「韓国人 お見合い」で検索した方へ。\n費用・流れを正直にご案内。初回相談無料。', target:'キーワード：日韓 結婚 / 韓国人 婚活 / 国際結婚 相談所', budget:'¥25,000/月', cpa:'¥28,000→目標¥18,000', why:'今のCPAは割高。<b>具体キーワードに絞る</b>とムダ打ちが減る。'},
+  {plat:'YouTube広告', pc:'#e35d4e', head:'【15秒】韓国人男性との結婚、3つの誤解', body:'言葉・家族・ビザの誤解をテンポよく。\n最後に「無料相談へ」CTA。会員インタビュー素材を活用。', target:'関東 / 女性 / 婚活・韓国ドラマ視聴層 / リマーケ', budget:'¥20,000/月', cpa:'¥15,000', why:'動画は<b>人柄が伝わり入会率が高い</b>(50%)。認知〜信頼を一気に。'}
+];
+var adShown=0;
+function genAd(){
+  var list=document.getElementById('adCreative');
+  var batch=AD_POOL.slice(adShown%AD_POOL.length, (adShown%AD_POOL.length)+3);
+  if(batch.length<3) batch=AD_POOL.slice(0,3);
+  if(adShown>0){} else list.innerHTML='';
+  if(adShown>0) list.innerHTML='';
+  batch.forEach(function(a){
+    var d=document.createElement('div'); d.className='ai-card';
+    d.innerHTML='<div class="a-type" style="color:'+a.pc+';background:'+a.pc+'18">'+a.plat+'</div>'
+      +'<div class="a-ttl">'+a.head+'</div>'
+      +'<div class="a-body">'+a.body+'</div>'
+      +'<div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-size:12px">'
+        +'<span>🎯 <b>ターゲット</b>：'+a.target+'</span></div>'
+      +'<div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:6px;font-size:12px">'
+        +'<span>💰 <b>推奨予算</b>：'+a.budget+'</span><span>📉 <b>予想CPA</b>：'+a.cpa+'</span></div>'
+      +'<div style="display:flex;gap:8px;margin-top:12px">'
+        +'<button style="background:'+a.pc+';color:#fff;border:none;border-radius:20px;padding:7px 16px;font-size:12px;font-weight:800;cursor:pointer">✓ この案で出稿（承認）</button>'
+        +'<button style="background:#fff;border:1px solid var(--line);color:var(--sub);border-radius:20px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer">✎ 直す</button></div>'
+      +'<div class="a-why">なぜ効く？ '+a.why+'</div>';
+    list.appendChild(d);
+  });
+  adShown+=3;
+}
+genAd();
+
+/* ===== お見合い分析（IBJ お見合いアナリティクス） ===== */
+var OM_FUNNEL=[
+  {lab:'検索条件に該当', n:1240, c:'var(--rose)'},
+  {lab:'写真クリック',   n:312,  c:'var(--gold)'},
+  {lab:'プロフィール閲覧',n:186, c:'var(--blue)'},
+  {lab:'お見合い申込',   n:64,   c:'var(--purple)'},
+  {lab:'OK（承諾）',     n:22,   c:'#7d54c4'},
+  {lab:'お見合い成立',   n:18,   c:'var(--green)'},
+  {lab:'プレ交際成立',   n:11,   c:'#2f9c78'}
+];
+(function(){
+  var w=document.getElementById('omFunnel'); if(!w) return;
+  var top=OM_FUNNEL[0].n, h='';
+  OM_FUNNEL.forEach(function(f,i){
+    var pw=Math.max(9, Math.round(f.n/top*100));
+    var conv = i===0 ? '—' : '<b>'+Math.round(f.n/OM_FUNNEL[i-1].n*100)+'%</b>';
+    h+='<div class="fn-row"><div class="fn-lab">'+f.lab+'</div>'
+      +'<div class="fn-bar-wrap"><div class="fn-bar" style="width:'+pw+'%;background:'+f.c+'">'+f.n.toLocaleString()+'</div></div>'
+      +'<div class="fn-conv">'+conv+'</div></div>';
+  });
+  w.innerHTML=h;
+})();
+
+/* 会員別（すべてダミー） */
+var MEMBERS=[
+  {n:'A.K さん', s:'女 32', hit:210, clk:64, view:41, app:12, ok:5, met:4, pre:3},
+  {n:'Y.S さん', s:'女 29', hit:296, clk:27, view:18, app:9,  ok:3, met:3, pre:2},
+  {n:'M.T さん', s:'男 35', hit:132, clk:38, view:26, app:2,  ok:1, met:1, pre:1},
+  {n:'H.N さん', s:'女 38', hit:181, clk:52, view:33, app:14, ok:4, met:3, pre:0},
+  {n:'J.P さん', s:'男 33', hit:243, clk:81, view:47, app:18, ok:7, met:6, pre:4},
+  {n:'R.I さん', s:'女 27', hit:178, clk:50, view:21, app:9,  ok:2, met:1, pre:0}
+];
+function omPct(a,b){ return b?Math.round(a/b*100):0; }
+function omRate(v,g,y){ return v>=g?'g':(v>=y?'y':'r'); }
+(function(){
+  var tb=document.getElementById('memBody'); if(!tb) return;
+  var h='';
+  MEMBERS.forEach(function(m){
+    var cr=omPct(m.clk,m.hit), vr=omPct(m.app,m.view), okr=omPct(m.ok,m.app);
+    var tags=[];
+    if(cr<20) tags.push({t:'📷 写真が弱い', c:'#c94574', bg:'#fbe7ef'});
+    if(m.app<5) tags.push({t:'📮 申込が少ない', c:'#d9a441', bg:'#fdf3e0'});
+    if(vr<25 && cr>=20) tags.push({t:'✍️ プロフ文で止まる', c:'#4f8fd6', bg:'#e8f1fb'});
+    if(m.pre===0 && m.met>0) tags.push({t:'💬 お見合い後フォロー', c:'#9b6dd6', bg:'#f0e6fb'});
+    if(!tags.length) tags.push({t:'🌸 好調', c:'#3fb489', bg:'#e6f6ef'});
+    h+='<tr>'
+      +'<td><span class="mem-name">'+m.n+'</span> <span style="color:var(--sub);font-size:11px">'+m.s+'</span></td>'
+      +'<td class="hide-m">'+m.hit+'</td>'
+      +'<td>'+m.clk+' <span class="rate '+omRate(cr,25,18)+'">('+cr+'%)</span></td>'
+      +'<td class="hide-m">'+m.view+'</td>'
+      +'<td>'+m.app+'</td>'
+      +'<td>'+m.ok+' <span class="rate '+omRate(okr,35,25)+'">('+okr+'%)</span></td>'
+      +'<td>'+m.met+'</td>'
+      +'<td class="hide-m">'+m.pre+'</td>'
+      +'<td>'+tags.map(function(t){return '<span class="dg" style="color:'+t.c+';background:'+t.bg+'">'+t.t+'</span>';}).join('')+'</td>'
+      +'</tr>';
+  });
+  tb.innerHTML=h;
+})();
+
+/* AI 会員フォロー提案 */
+var FOLLOW_POOL=[
+  {type:'📷 写真テコ入れ', ttl:'Y.Sさん・R.Iさん：メイン写真の差し替え提案', body:'「検索には出ているのに写真を押されない」状態です。\n・提携フォトスタジオでの再撮影をご案内（明るい屋外・自然な笑顔）\n・サブ写真に「趣味の場面」を1枚追加\n・声かけ例：「今のお写真もとても素敵なのですが、検索での反応をもう一段上げたいので、一度だけ撮り直してみませんか？」', why:'写真クリック率はサロン平均<b>25%</b>。Y.Sさんは<b>9%</b>で、検索該当数はサロン最多です。'},
+  {type:'📮 申込数アップ', ttl:'M.Tさん：今週の申込を「週5件」に', body:'申込が月2件では、確率的にお見合いが成立しません。\n・条件を1つだけ緩める（年齢＋2歳 / エリア＋1路線）\n・毎週月曜に「今週のおすすめ5名」をこちらから送付\n・声かけ例：「まずは会ってみないと分からない部分が多いので、今週は5名だけ一緒に選んでみましょう」', why:'IBJの実績上、<b>申込数 × OK率(34%)</b> がほぼそのままお見合い数になります。'},
+  {type:'💬 お見合い後フォロー', ttl:'H.Nさん・R.Iさん：当日24時間以内のフォロー', body:'お見合いは成立しているのにプレ交際に進んでいません。\n・当日中に振り返り（お相手の良かった点を3つ言語化）\n・次回に向けた会話テーマシートをお渡し\n・声かけ例：「今日はいかがでしたか？次に活かせるところを一緒に整理しましょう」', why:'サロン全体のプレ交際成立率は<b>61%</b>。この2名だけ大きく下回っています。'},
+  {type:'✍️ プロフィール文', ttl:'全会員：プロフィール本文のAIリライト', body:'写真は見られているのに申込に至らない方向けに、AIが本文を書き直します。\n・冒頭2行に「人柄」と「結婚後のイメージ」\n・NG：条件の羅列 ／ OK：具体的なエピソードを1つ\n・日韓の会員さまは「言葉・ご家族」への不安解消を1行入れる', why:'閲覧→申込が<b>25%未満</b>の会員は、写真ではなく<b>本文</b>で止まっています。'},
+  {type:'🔔 停滞アラート', ttl:'2週間 動きのない会員を自動で検知', body:'申込0・ログインなしが2週間続いた会員を自動でリストアップします。\n・先生にはLINE/メールで「〇〇さん、2週間動きがありません」\n・そのまま送れる声かけ文もセットで生成\n・退会理由の上位は「放置された感じがした」', why:'停滞は<b>早期発見がすべて</b>。1か月放置すると復帰率が大きく下がります。'}
+];
+var folShown=0;
+function genFollow(){
+  var list=document.getElementById('followList'); if(!list) return;
+  var batch=FOLLOW_POOL.slice(folShown,folShown+3);
+  if(!batch.length){ folShown=0; batch=FOLLOW_POOL.slice(0,3); }
+  if(folShown===0) list.innerHTML='';
+  batch.forEach(function(a){
+    var d=document.createElement('div'); d.className='ai-card';
+    d.innerHTML='<div class="a-type">'+a.type+'</div><div class="a-ttl">'+a.ttl+'</div>'
+      +'<div class="a-body">'+a.body+'</div>'
+      +'<div style="display:flex;gap:8px;margin-top:12px">'
+        +'<button style="background:var(--rose);color:#fff;border:none;border-radius:20px;padding:7px 16px;font-size:12px;font-weight:800;cursor:pointer">✓ この内容で連絡する</button>'
+        +'<button style="background:#fff;border:1px solid var(--line);color:var(--sub);border-radius:20px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer">✎ 直す</button></div>'
+      +'<div class="a-why">根拠 '+a.why+'</div>';
+    list.appendChild(d);
+  });
+  folShown+=3;
+}
+genFollow();
+
+/* タブ切替 */
+document.querySelectorAll('.tab').forEach(function(t){
+  t.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
+    document.querySelectorAll('.pane').forEach(function(x){x.classList.remove('on');});
+    t.classList.add('on');
+    document.getElementById('pane-'+t.getAttribute('data-pane')).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
+</script>
+</body>
+</html>
