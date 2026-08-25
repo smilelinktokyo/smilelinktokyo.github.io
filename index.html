@@ -165,6 +165,13 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
   <!-- ダッシュボード -->
   <div class="pane on" id="pane-dash">
 <div class="guide"><div class="g-ttl">📘 このタブの使い方 — まずはここだけ見ればOKです</div><span class="g-step">1</span>いちばん上の5つの数字＝<b>今月の実績</b>です。「問い合わせが何件来て、何人がご入会したか」。<br><span class="g-step">2</span>その下の<b>ファネル（じょうご）</b>＝人がどこで減っているか。バーが急に短くなる所が、いま直すべき場所です。<br><span class="g-step">3</span>いちばん下＝<b>どこから来た人</b>が入会まで進んだか。<br>👉 毎朝ここを1分見るだけで、「今日どこに力を入れるか」が決まります。<br>📌 <b>この数字はIBJから来るものではありません。</b>メール・LINEに届いた問い合わせと、自分が動かしたカードを、この画面が<b>自分で数えています</b>（IBJの別料金オプションは不要です）。<div style="margin-top:7px;font-size:11.5px;color:var(--sub)">分からない言葉が出てきたら → 右端の <b>📘 使い方・用語</b> タブにぜんぶ書いてあります。</div></div>
+    <div class="sec" style="background:linear-gradient(160deg,#fff,#fdeef3);border-color:#f6dbe6;border-left:4px solid var(--rose)">
+      <h2>📋 今日やること</h2>
+      <div class="h-note">ひとりで回している以上、<b>覚えておくのは無理</b>です。やることの方から出てくるようにしています。</div>
+      <div id="todayBox"></div>
+      <div class="hint">💡 この4つが<b>ゼロになったら今日は終わり</b>です。ダッシュボードを見に来なくても、<b>LINEに同じ内容が届きます。</b></div>
+    </div>
+
     <div class="kpis">
       <div class="kpi hl"><div class="k-lab">今月の問い合わせ</div><div class="k-num">24</div><div class="k-sub"><b>+6</b> 先月比</div></div>
       <div class="kpi"><div class="k-lab">無料相談（実施）</div><div class="k-num">12</div><div class="k-sub">予約15件 → 実施 <b>80%</b></div></div>
@@ -442,6 +449,13 @@ footer{text-align:center;color:var(--sub);font-size:11px;margin-top:30px;}
     道具の話の前に、<b>この商売でオンライン集客がどこまで効くのか</b>を正直に整理しました。<br>
     良いことだけ並べても意味がないので、<b>難しいところも書いています。</b></div>
 
+    <div class="sec" style="background:linear-gradient(160deg,#fff,#eef7f1);border-color:#cfe7d8">
+      <h2>🤖 ひとりで回すための自動化</h2>
+      <div class="h-note">少人数制でやっている以上、<b>できる量には限りがあります。</b>だから「頑張って増やす」のではなく、<b>手が回らないところを機械に持たせます。</b></div>
+      <div id="soloAuto"></div>
+      <div class="hint">💡 合計すると、<b>1日3分＋週10分</b>くらいです。逆に言うと、<b>それ以上の手間がかかる仕組みは続かない</b >ので作りません。</div>
+    </div>
+
     <div class="sec">
       <h2>🎯 どう戦うか（集客の考え方）</h2>
       <div class="h-note">大手と同じ戦い方をしない、が前提です。</div>
@@ -613,6 +627,24 @@ var SRC=[
 ];
 var maxInq=Math.max.apply(null,SRC.map(function(s){return s.inq;}));
 function convColor(r){ return r>=40?'#3fb489':r>=20?'#d9a441':'#c94574'; }
+
+/* 今日やること */
+var TODAY=[
+  {ic:'🔴', c:'#c94574', t:'まだ返信していない問い合わせ 2件', d:'K.Mさん（YouTube・スコア88・<b>5時間経過</b>）／ T.Aさん（Instagram・2時間経過）', b:'AI下書きを見て送る'},
+  {ic:'🟡', c:'#d9a441', t:'動きが止まっている会員 2名', d:'H.Nさん（15日連絡なし）／ R.Iさん（18日・お見合い後フォロー未）', b:'声かけ案を見る'},
+  {ic:'📅', c:'#4f8fd6', t:'今日の予定：無料相談 1件', d:'14:00 W.Hさん（オンライン）— 前日リマインドは送信済み', b:'カルテを開く'},
+  {ic:'💡', c:'#9b6dd6', t:'今週の発信がまだ 0本', d:'先週いちばん反応が良かったのは「40代の婚活でよくある誤解」', b:'AI提案から選ぶ'}
+];
+(function(){
+  var w=document.getElementById('todayBox'); if(!w) return;
+  w.innerHTML=TODAY.map(function(x){
+    return '<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-left:4px solid '+x.c+';border-radius:12px;padding:11px 14px;margin-bottom:8px">'
+      +'<div style="font-size:17px;flex-shrink:0">'+x.ic+'</div>'
+      +'<div style="flex:1;min-width:200px"><div style="font-weight:800;font-size:13.5px">'+x.t+'</div>'
+      +'<div style="font-size:12px;color:#5a4f63;margin-top:2px">'+x.d+'</div></div>'
+      +'<button style="background:'+x.c+';color:#fff;border:none;border-radius:18px;padding:6px 14px;font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap">'+x.b+'</button></div>';
+  }).join('');
+})();
 
 /* 流入元 ミニ（ダッシュボード） */
 (function(){
@@ -1054,6 +1086,26 @@ var STRATEGY=[
       +'<div><div style="font-weight:800;font-size:14px;margin-bottom:5px">'+x.t+'</div>'
       +'<div style="font-size:12.5px;color:#5a4f63;line-height:1.95">'+x.b+'</div>'
       +'<div style="font-size:12.5px;color:'+x.c+';font-weight:700;margin-top:6px">'+x.d+'</div></div></div>';
+  }).join('');
+})();
+
+/* ===== ひとりで回すための自動化 ===== */
+var SOLO=[
+  {p:'問い合わせが来ても、すぐ気づけない', a:'届いた瞬間に<b>自分のLINEへ通知</b>。<b>返信の下書きもAIが用意</b>するので、読んで送るだけ', g:'30分以内の返信＝入会率38%（翌日以降は0%）'},
+  {p:'返信の文面を毎回考えるのが大変', a:'相手の質問内容・年代・きっかけを見て、<b>AIが下書き</b>。直したいところだけ直す', g:'1件あたり10分 → 1分'},
+  {p:'会員さんの様子が止まっているのに気づけない', a:'最後の連絡から<b>2週間で自動的に🟡</b>＋通知。<b>声かけの文面つき</b>', g:'退会理由の上位は「放っておかれた感じがした」'},
+  {p:'無料相談の前日リマインドを送り忘れる', a:'予約が入った時点で、<b>前日と当日の朝に自動送信</b>（地図・オンラインURL付き）', g:'予約→実施の取りこぼし（ノーショー）が減る'},
+  {p:'何を発信すればいいか毎回悩む', a:'反応が良かった投稿の傾向から、<b>AIが次の案を作る</b>。選んで少し直すだけ', g:'ネタ切れで発信が止まるのを防ぐ'},
+  {p:'数字を集計する時間がない', a:'問い合わせ数・入会率・広告費まで<b>全部自動集計</b>。<b>週1回、LINEに3行の要約が届く</b>', g:'画面を見に行かなくても状況が分かる'},
+  {p:'その日やることを覚えていられない', a:'ダッシュボードの<b>「今日やること」</b>に自動で並ぶ。ゼロになったら今日は終わり', g:'記憶に頼らない。抜けが無くなる'}
+];
+(function(){
+  var w=document.getElementById('soloAuto'); if(!w) return;
+  w.innerHTML=SOLO.map(function(x){
+    return '<div style="background:#fff;border:1px solid var(--line);border-radius:13px;padding:12px 15px;margin-bottom:9px">'
+      +'<div style="font-size:12.5px;color:var(--rose-deep);font-weight:800;margin-bottom:5px">😥 '+x.p+'</div>'
+      +'<div style="font-size:12.5px;color:#5a4f63;line-height:1.95">🤖 '+x.a+'</div>'
+      +'<div style="font-size:11.5px;color:var(--sub);margin-top:6px;padding-top:6px;border-top:1px dashed var(--line)">→ '+x.g+'</div></div>';
   }).join('');
 })();
 
